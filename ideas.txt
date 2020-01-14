@@ -1,2 +1,6 @@
 Tinder-style Swiping:
 https://codepen.io/suez/pen/MaeVBy
+
+Agile manager/Git:
+https://www.atlassian.com/software/jira/pricing
+Free for 1-10 users
