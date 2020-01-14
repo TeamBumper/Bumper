@@ -1,2 +1,2 @@
-# Leak
-Master repository for Leak development
+# Kindred
+Master repository for Kindred development
