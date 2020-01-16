@@ -8,3 +8,9 @@ Free for 1-10 users
 Car Search
 Find Dealers
 VIN Lookup
+
+Deployment idea: (just an idea)
+host flask-api backend on Heroku (or similar)
+host react/bootsrap (??) based frontend on github pages (or similar)
+  - this part gives us nice urls like example.github.io
+  
