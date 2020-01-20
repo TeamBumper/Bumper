@@ -1,2 +1,2 @@
-# Kindred
-Master repository for Kindred development
+# Bumper
+Master repository for Bumper development
