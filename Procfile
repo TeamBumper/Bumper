@@ -1,2 +1,1 @@
-web: gunicorn app:main
-release: flask initdb
+web: gunicorn main:app
