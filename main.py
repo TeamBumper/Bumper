@@ -8,4 +8,4 @@ app.config['SECRET_KEY'] = 'leak'
 
 @app.route('/')
 def init():
-    return render_template('login.html')
+    return render_template('welcome/welcome.html')
