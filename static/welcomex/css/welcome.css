@@ -48,7 +48,7 @@
 }
 
 .login-option:active {
-    border: 10px solid #465667;
+    border: 10px solid white;
 }
 
 .google-background {
@@ -62,6 +62,6 @@
 }
 
 .github-background {
-    background-color: #E1E1E1;
-    color: #465667;
+    background-color: #465667;
+    color: white;
 }
