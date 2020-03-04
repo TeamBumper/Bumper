@@ -1,5 +1,10 @@
 {% extends "base/base.html" %}
-{% block title %}Bumper{% endblock %}
+
+{% block head %}
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+{% endblock %}
+
 {% block body %}
 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='welcome/css/welcome.css') }}">
@@ -17,9 +22,12 @@
 
     <div class="login-options">
 
-      <div class="login-option google-background">
-        <i class="fab fa-google"></i>
-      </div>
+      <div class="login-option" id="firebaseui-auth-container"></div>
+      <div id="loader">Loading...</div>
+
+      <!--<div class="login-option google-background">-->
+        <!--<i class="fab fa-google"></i>-->
+      <!--</div>-->
 
       <div class="login-option facebook-background">
         <i class="fab fa-facebook"></i>
@@ -29,11 +37,63 @@
         <i class="fab fa-github"></i>
       </div>
 
+
     </div>
 
   </div>
 
 </div>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-analytics.js"></script>
+
+<!-- Enables Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
+
+
+<script>
+  console.log("Here");
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAM3hjrsZzU2rEjjEAsaY-LebpdS-dDuOA",
+    authDomain: "bumper-6a073.firebaseapp.com",
+    databaseURL: "https://bumper-6a073.firebaseio.com",
+    projectId: "bumper-6a073",
+    storageBucket: "bumper-6a073.appspot.com",
+    messagingSenderId: "617314005412",
+    appId: "1:617314005412:web:76b17eb7cb5474f6929131",
+    measurementId: "G-EBKWBZQH2S"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  var uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // User successfully signed in.
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        return true;
+      },
+      uiShown: function() {
+        // The widget is rendered.
+        // Hide the loader.
+        document.getElementById('loader').style.display = 'none';
+      }
+    },
+    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+    signInFlow: 'popup',
+    signInSuccessUrl: 'www.google.com',
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    ]
+  };
+  ui.start('#firebaseui-auth-container', uiConfig);
+</script>
 {% endblock %}
 
