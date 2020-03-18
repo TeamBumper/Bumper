@@ -27,26 +27,40 @@ def home_screen():
     print("HERE")
     return render_template('home/home.html')
 
-
 # API
 parser = reqparse.RequestParser() 
-parser.add_argument('id_token')
+parser.add_argument('email')
 parser.add_argument('access_token')
 
 class API_addUser(Resource):
     def post(self):
         args = parser.parse_args()
-        id_token = args['id_token']
+        email = args['email']
         access_token = args['access_token']
 
         record = {
-            'id_token':id_token,
+            'email':email,
             'access_token':access_token,
         }
 
         users.insert_one(record)
         print("Here 2")
         return 200
+
+# class API_checkUser(Resource):
+#     def get(self):
+#         args = parser.parse_args()
+#         id_token = args['id_token']
+#         access_token = args['access_token']
+
+#         record = {
+#             'id_token':id_token,
+#             'access_token':access_token,
+#         }
+
+#         # users.insert_one(record)
+#         print("Here 2")
+#         return 200
 
 api.add_resource(API_addUser, '/adduser')
 

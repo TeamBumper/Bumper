@@ -21,7 +21,9 @@ var uiConfig = {
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
             // Record authResult['idToken'] and authResult['accessToken'] to Mongo
-            makeRec('POST', '/adduser?access_token='+authResult.credential.accessToken+'&id_token='+authResult.credential.idToken, handleAuthResponse);
+            makeRec('POST', '/adduser?email=' + authResult.additionalUserInfo.profile.email + '&access_token=' + authResult.credential.accessToken, nothing);
+            localStorage.setItem('email', authResult.additionalUserInfo.profile.email);
+            localStorage.setItem('access_token', authResult.credential.accessToken);
             return true;
         },
         uiShown: function() {
@@ -40,13 +42,7 @@ var uiConfig = {
 };
 ui.start('#firebaseui-auth-container', uiConfig);
 
-/* Handle AJAX Response */
-function handleAuthResponse(response) {
-    console.log(response);
-    localStorage.setItem('access_token', response.credential.accessToken);
-    localStorage.setItem('id_token', response.credential.idToken);
-    console.log(localStorage);
-}
+function nothing(){}
 
 /* AJAX Boilerplate */
 function makeRec(method, target, handlerAction, data) {
