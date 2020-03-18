@@ -47,22 +47,27 @@ class API_addUser(Resource):
         print("Here 2")
         return 200
 
-# class API_checkUser(Resource):
-#     def get(self):
-#         args = parser.parse_args()
-#         id_token = args['id_token']
-#         access_token = args['access_token']
+class API_checkUser(Resource):
+    def get(self):
+        args = parser.parse_args()
+        email = args['email']
+        access_token = args['access_token']
 
-#         record = {
-#             'id_token':id_token,
-#             'access_token':access_token,
-#         }
-
-#         # users.insert_one(record)
-#         print("Here 2")
-#         return 200
+        record = {
+            'email':email,
+            'access_token':access_token,
+        }
+        print(users.find_one(record))
+        if users.find_one(record) is not None:
+            print("Marcus wtf")
+            return 200
+        
+        else:        
+            print("Alan wtf")
+            return 404
 
 api.add_resource(API_addUser, '/adduser')
+api.add_resource(API_checkUser, '/checkuser')
 
 
 

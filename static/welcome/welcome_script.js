@@ -1,3 +1,4 @@
+checkUser();
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyAM3hjrsZzU2rEjjEAsaY-LebpdS-dDuOA",
@@ -41,6 +42,24 @@ var uiConfig = {
     ]
 };
 ui.start('#firebaseui-auth-container', uiConfig);
+
+function checkUser(){
+    
+  // If localStorage not empty
+    // Check if user is authorized
+      // If authorized, display their homepage
+  // Display login screen
+    if ((localStorage.getItem("email") != null) && (localStorage.getItem("access_token") != null)){
+        makeRec('GET', '/checkuser?email=' + localStorage.getItem("email") + '&access_token=' +localStorage.getItem("access_token"), handleCheckUser);
+    }
+}
+
+function handleCheckUser(response) {
+    console.log(response);
+    if(response.response.indexOf("200") !== -1) {
+        location.href = "home";
+    } 
+}
 
 function nothing(){}
 
