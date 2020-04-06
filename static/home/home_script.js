@@ -1,11 +1,13 @@
 getCars();
 
 function getCars(){
-    makeRec('GET', '/search', handleCars);
+    endpoint = '/search';
+    endpoint += '?make=Chevrolet'
+    makeRec('GET', endpoint, handleCars);
 }
 
 function handleCars(response) {
-    console.log(response);
+    console.log(response.responseText);
 }
 
 /* AJAX Boilerplate */

@@ -1,5 +1,6 @@
 from flask_restful import reqparse, abort, Api, Resource
 from marketcheck import SearchSystem
+import json
 
 parser = reqparse.RequestParser() 
 parser.add_argument('email')
@@ -75,9 +76,12 @@ class API_searchMarketCheck(Resource):
     def get(self):
         print("doing search")
         args = parser.parse_args()        
-        system = SearchSystem()        
+        system = SearchSystem()
+        system.setFilter('start', '0')
+        system.setFilter('rows', '100')
         for param in args:
             if args[param] is not None:
                 system.setFilter(param, args[param])            
         found_cars = system.search()
-        return 200, found_cars
+        print(found_cars)
+        return json.dumps(found_cars)
