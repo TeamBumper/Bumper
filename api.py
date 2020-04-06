@@ -1,8 +1,5 @@
 from flask_restful import reqparse, abort, Api, Resource
-from main import app
 from marketcheck import SearchSystem
-
-api = Api(app)
 
 parser = reqparse.RequestParser() 
 parser.add_argument('email')
@@ -47,12 +44,14 @@ class API_addUser(Resource):
             'access_token':access_token,
         }
 
+        from main import users
         users.insert_one(record)
         print("Here 2")
         return 200
 
 class API_checkUser(Resource):
     def get(self):
+        print("In check user")
         args = parser.parse_args()
         email = args['email']
         access_token = args['access_token']
@@ -61,6 +60,8 @@ class API_checkUser(Resource):
             'email':email,
             'access_token':access_token,
         }
+
+        from main import users
         print(users.find_one(record))
         if users.find_one(record) is not None:
             print("Marcus wtf")
@@ -72,6 +73,7 @@ class API_checkUser(Resource):
 
 class API_searchMarketCheck(Resource):
     def get(self):
+        print("doing search")
         args = parser.parse_args()        
         system = SearchSystem()        
         for param in args:
@@ -79,7 +81,3 @@ class API_searchMarketCheck(Resource):
                 system.setFilter(param, args[param])            
         found_cars = system.search()
         return 200, found_cars
-    
-api.add_resource(API_addUser, '/adduser')
-api.add_resource(API_checkUser, '/checkuser')
-api.add_resource(API_searchMarketCheck, '/search')
