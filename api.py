@@ -33,6 +33,7 @@ parser.add_argument('miles_min')
 parser.add_argument('miles_max')
 parser.add_argument('days_on_market_min')
 parser.add_argument('days_on_market_max')
+parser.add_argument('value')
 
 class API_addUser(Resource):
     def post(self):
@@ -45,8 +46,13 @@ class API_addUser(Resource):
             'access_token':access_token,
         }
 
-        from main import users
+        record2 = {
+            'email':email,
+        }
+
+        from main import users, car_preferences
         users.insert_one(record)
+        car_preferences.insert_one(record2)
         print("Here 2")
         return 200
 
@@ -85,3 +91,28 @@ class API_searchMarketCheck(Resource):
         found_cars = system.search()
         print(found_cars)
         return json.dumps(found_cars)
+
+class API_carPreferences(Resource):
+    def put(self):
+        args = parser.parse_args()
+        key_value = {
+            args['vin']:args['value']
+        }
+
+        email = args['email']
+        filter = {"email": email}
+        newvalues = {"$set": key_value}
+        from main import car_preferences
+
+        # Get user information based on email
+        # user_info = car_preferences.find(filter)
+        # user_info_cars = user_info['car_table']
+        # user_info_cars.update(key_value)
+        car_preferences.update_one(filter, newvalues)
+
+
+        # print(user_info)
+        # print(user_info_cars)
+
+        print("post done")
+        return 200
