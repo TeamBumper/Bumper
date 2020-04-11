@@ -89,7 +89,6 @@ class API_searchMarketCheck(Resource):
             if args[param] is not None:
                 system.setFilter(param, args[param])            
         found_cars = system.search()
-        print(found_cars)
         return json.dumps(found_cars)
 
 class API_carPreferences(Resource):

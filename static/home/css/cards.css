@@ -23,26 +23,38 @@ button {
 }
 .search_page {
 	float: left;
+	background-color: rgb(223, 223, 223);
+	margin-top: 15px;
+	margin-left: 15px;
+	border-radius: 10px;
+	padding: 10px;
+	width: 300px;
 }
 .likes_page {
 	float: right;
+	background-color: rgb(223, 223, 223);
+	margin-top: 15px;
+	margin-right: 15px;
+	border-radius: 10px;
+	padding: 10px;
+	width: 300px;
 }
 
 .cardstack_container {
 	position: absolute;
 	left: 2.5%;
-	top: 2%;
+	top: 5%;
 	width: 95%;
-	height: 96%;
+	height: 90%;
 	/* margin-left: -15.3rem;
     margin-top: -27rem; */
 	/* background: #F6F6F5; */
-	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+	/* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); */
 }
 .cardstack_inner_container {
 	overflow: hidden;
 	position: relative;
-	height: 80%;
+	height: 100%;
 	padding-top: 20%;
 }
 .cardstack_cards {
@@ -60,6 +72,7 @@ button {
 	height: 100%;
 	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
+	border-radius: 25px !important;
 }
 .card.reset {
 	-webkit-transition: -webkit-transform 0.3s;
@@ -92,48 +105,38 @@ button {
 	z-index: 1;
 }
 .card__top {
-	height: 80%;
+	height: 55%;
 	padding-top: 10%;
+	border-radius: 25px 25px 0 0;
 }
-.card__top.purple {
-	background: #7132b9;
-}
-.card__top.blue {
-	background: #248cb6;
-}
-.card__top.indigo {
-	background: #303f9f;
-}
-.card__top.cyan {
-	background: #26c6da;
-}
-.card__top.lime {
-	background: #afb42b;
-}
-.card__top.brown {
-	background: #795548;
-}
+
 .card__img {
 	overflow: hidden;
-	width: 75%;
-	height: 75%;
+	width: 90%;
+	height: auto;
 	margin: 0 auto 1.5rem;
-	border-radius: 10%;
-	border: 0.5rem solid #ffffff;
+	border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	background-size: cover;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+
+.card__img img {
+	width: 100%;
+}
+
 .card__name {
 	text-align: center;
-	font-size: 5rem;
+	font-size: 6rem;
 	font-weight: bold;
 	color: #fff;
 }
 .card__btm {
-	height: 11.5rem;
+	height: 45%;
 	background: #ffffff;
+	border-radius: 0 0 25px 25px;
 }
 .card__we {
 	text-align: center;
@@ -175,9 +178,13 @@ button {
 }
 .card__choice.m--reject {
 	background: #ff945a;
+	border-radius: 25px;
+	pointer-events:none;
 }
 .card__choice.m--like {
 	background: #b1da96;
+	border-radius: 25px;
+	pointer-events:none;
 }
 .card__choice.m--like:after {
 	-webkit-transform: scaleY(-1);
@@ -192,4 +199,45 @@ button {
 	height: 100%;
 	cursor: -webkit-grab;
 	cursor: grab;
+}
+
+.card_bot_header {
+	border-bottom: 3px solid gray;
+	height: 150px;
+}
+
+.price {
+	float: left;
+	margin-left: 10px;
+	font-size: 90px;
+}
+
+.miles {
+	float: right;
+	margin-right: 10px;
+	font-size: 90px;
+}
+
+.element {
+	height: 100px;
+	width: 100%;
+	font-size: 50px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	line-height: 100px;
+}
+
+.element img {
+	width: 70px;
+	padding: 10px;
+}
+
+.element:after {
+	position: absolute;
+	content: "";
+	margin-top: 45px;
+	height:1px;
+	width:85%;
+	border-bottom:2px solid gray;
 }

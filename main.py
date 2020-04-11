@@ -26,13 +26,18 @@ api.add_resource(API_carPreferences, '/car_preferences')
 def init():
     return render_template('welcome/welcome.html')
 
+@app.route('/search_page')
+def search_page():
+    print("Test -- sEarch")
+    return render_template('search/search_page.html')
+
 
 @app.route('/likes')
 def liked_cars():
     return render_template('likes/likes.html')
 
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home_screen():
     # if there's no id token or access token just show cardstarck and only only dislike of cars
     # Anything requring a specific user, states
@@ -42,6 +47,11 @@ def home_screen():
     # system.setFilter('make', 'Chevrolet')
     # cars_json_list = system.search()
     # system.debug_print(cars_json_list)
+    if request.method == 'POST':
+        data = request.data
+        print("Printing data")
+        print(data)
+
 
     return render_template('home/home.html')
 
