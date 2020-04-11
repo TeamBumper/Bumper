@@ -27,10 +27,15 @@ def init():
     return render_template('welcome/welcome.html')
 
 
+@app.route('/likes')
+def liked_cars():
+    return render_template('likes/likes.html')
+
+
 @app.route('/home')
 def home_screen():
     # if there's no id token or access token just show cardstarck and only only dislike of cars
-    # Anything requring a specific user, states 
+    # Anything requring a specific user, states
 
     # return redirect_url('/')
     # system = SearchSystem()
@@ -39,6 +44,4 @@ def home_screen():
     # system.debug_print(cars_json_list)
 
     return render_template('home/home.html')
-
-
 

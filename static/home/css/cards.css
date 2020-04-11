@@ -16,6 +16,18 @@ body {
 	overflow: hidden;
 }
 
+button {
+	font-size: 50px !important;
+	background-color: #248cb6;
+	border-radius: 12px;
+}
+.search_page {
+	float: left;
+}
+.likes_page {
+	float: right;
+}
+
 .cardstack_container {
 	position: absolute;
 	left: 2.5%;
