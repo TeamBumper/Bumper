@@ -28,7 +28,7 @@ button {
 	margin-left: 15px;
 	border-radius: 10px;
 	padding: 10px;
-	width: 300px;
+	width: 200px;
 }
 .likes_page {
 	float: right;
@@ -37,7 +37,7 @@ button {
 	margin-right: 15px;
 	border-radius: 10px;
 	padding: 10px;
-	width: 300px;
+	width: 200px;
 }
 
 .cardstack_container {
@@ -45,7 +45,7 @@ button {
 	left: 2.5%;
 	top: 5%;
 	width: 95%;
-	height: 90%;
+	height: 94%;
 	/* margin-left: -15.3rem;
     margin-top: -27rem; */
 	/* background: #F6F6F5; */
@@ -113,25 +113,31 @@ button {
 .card__img {
 	overflow: hidden;
 	width: 90%;
-	height: auto;
-	margin: 0 auto 1.5rem;
+	height: 500px;
+	margin: auto;
 	border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	background-size: cover;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	object-fit: fill;
 }
 
 .card__img img {
 	width: 100%;
+	height: 100%;
 }
 
 .card__name {
 	text-align: center;
-	font-size: 6rem;
+	font-size: 5.2rem;
+	height: 144px;
 	font-weight: bold;
 	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .card__btm {
 	height: 45%;

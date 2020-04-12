@@ -1,8 +1,10 @@
-getCars();
 var card_cont;
 var all_cars;
 var colors= ['purple','blue','indigo','cyan','lime','brown'];
 var js_passthrough = JSON.parse(document.getElementById('js-passthrough').innerText);
+var search_params = js_passthrough['search_params'];
+
+getCars();
 
 function getRandomColor() {
 	var letters = '0123456789ABCDEF';
@@ -12,10 +14,19 @@ function getRandomColor() {
 	}
 	return color;
   }
-  
 function getCars() {
-	endpoint = '/search';
-	endpoint += '?make=Chevrolet';
+	endpoint = "/search";
+	delimiter = "?";
+	console.log("Building search query...");
+	for (const [key, value] of Object.entries(search_params)) {
+		if(value != "") {
+			console.log("\t" + key + " -> " + value);
+			endpoint += (delimiter + key + "=" + value);
+			delimiter = "&";
+		} else {
+			console.log("\tEmpty key: " + key);
+		}
+	}
 	makeRec('GET', endpoint, handleCars);
 }
 
@@ -31,7 +42,6 @@ function handleCars(response) {
 
 
 function buildCard(car) {
-	console.log(car);
 	// Card structure
 	if (car['media'] == null || car['price'] == null) return;
 	var new_card = document.createElement('div');
@@ -41,6 +51,7 @@ function buildCard(car) {
 	card_top.classList.add("card__top");
 	var color=getRandomColor();
 
+	console.log(document.body.style.background);
 	card_top.style.background=color;
 
 	var card_bot = document.createElement('div');
@@ -58,14 +69,15 @@ function buildCard(car) {
 	var card_img = document.createElement('div');
 	card_img.className = 'card__img';
 	var img = document.createElement('img');
-	img.id = car['vin'] + '-img-0';
+	img.id = car['vin'] + '-img-1';
 	img.addEventListener('click', goToNextImage);
 	img.src = car['media']['photo_links'][0];
 	card_img.appendChild(img);
 
 	var card_name = document.createElement('div');
 	card_name.className = 'card__name';
-	card_name.innerText = car['build']['year'] + " " + car['build']['make'] + " " + car['build']['model'] + " " + car['build']['trim'];
+	var title = car['build']['year'] + " " + car['build']['make'] + " " + car['build']['model'] + " " + car['build']['trim'];
+	card_name.innerText = title;
 
 	card_top.appendChild(card_img);
 	card_top.appendChild(card_name);
@@ -98,7 +110,7 @@ function buildCard(car) {
 	transmission.innerHTML = "<img src='" + js_passthrough['transmission-pic'] + "'>" + car['build']['transmission'] + ", " + car['build']['engine'];
 	var bodytype = document.createElement('div');
 	bodytype.className = "element";
-	bodytype.innerHTML = "<img src='" + js_passthrough['bodytype-pic'] + "'>" + car['build']['body_type']+" - seats "+car['build']['std_seating']
+	bodytype.innerHTML = "<img src='" + js_passthrough['bodytype-pic'] + "'>" + car['build']['body_type']+", "+car['build']['std_seating']+" seats";
 
 	card_bot.appendChild(card_bot_header);
 	card_bot.appendChild(newused);
@@ -135,7 +147,9 @@ function goToNextImage(e) {
 		if (car['vin'] == vin) thisCar = car;
 	});
 
-	e.target.src = thisCar['media']['photo_links'][++index];
+	e.target.src = thisCar['media']['photo_links'][index];
+
+	index++;
 
 	if (index >= 4) index = 0;
 	e.target.id = vin + '-img-' + index;

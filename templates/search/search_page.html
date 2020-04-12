@@ -39,6 +39,9 @@
                         <li class="tab-list__item">
                             <a class="tab-list__link" href="#tab2" data-toggle="tab">advanced search</a>
                         </li>
+                        <li class="tab-list__item">
+                            <a class="tab-list__link" href="#tab3" data-toggle="tab">custom search</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
@@ -688,6 +691,23 @@
                                         <input type="checkbox" name="add-car">
                                         <span class="checkmark"></span>
                                     </label>
+                                </div>
+                                <button class="btn-submit" type="submit">search</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <form method="POST" action="/home">
+                                <div class="input-group">
+                                    <label class="label">Make:</label>
+                                    <input class="input--style-1" type="text" name="make" placeholder="Chevrolet" required="required">
+                                </div>
+                                <div class="input-group">
+                                    <label class="label">Model:</label>
+                                    <input class="input--style-1" type="text" name="model" placeholder="Tahoe">
+                                </div>
+                                <div class="input-group">
+                                    <label class="label">Location:</label>
+                                    <input class="input--style-1" type="text" name="location" placeholder="123 Bumper Ave">
                                 </div>
                                 <button class="btn-submit" type="submit">search</button>
                             </form>

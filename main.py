@@ -7,8 +7,8 @@ from flask_restful import Api
 app = Flask(__name__)
 
 # Setup Mongo
-#app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
-app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
+app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
+# app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
 mongo = PyMongo(app)
 users = mongo.db.users
 car_preferences = mongo.db.car_preferences
@@ -28,7 +28,6 @@ def init():
 
 @app.route('/search_page')
 def search_page():
-    print("Test -- sEarch")
     return render_template('search/search_page.html')
 
 
@@ -41,17 +40,13 @@ def liked_cars():
 def home_screen():
     # if there's no id token or access token just show cardstarck and only only dislike of cars
     # Anything requring a specific user, states
-
-    # return redirect_url('/')
-    # system = SearchSystem()
-    # system.setFilter('make', 'Chevrolet')
-    # cars_json_list = system.search()
-    # system.debug_print(cars_json_list)
+    make = ""
+    model = ""
     if request.method == 'POST':
-        data = request.data
-        print("Printing data")
-        print(data)
+        if request.form['make'] != None:
+            make = request.form['make']
+            model = request.form['model']
+            if model == 'All Models':
+                model = ''
 
-
-    return render_template('home/home.html')
-
+    return render_template('home/home.html', make=make, model=model)
