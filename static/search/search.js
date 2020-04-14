@@ -1,3 +1,63 @@
+let lat;
+let long;
+getLocation();
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        setCoordinates(lat,long);
+    });
+}
+
+function setCoordinates(x,y) {
+    lat = x;
+    long = y;
+}
+
+let prev = document.getElementById('noMakeListed');
+let make = "All Models";
+function changeModel(carMake) {
+    make = carMake;
+    prev.style.display = 'none';
+    var cont = document.getElementById(carMake);
+    cont.style.display = 'block';
+    prev = cont;
+}
+
+function submitBasic() {
+    var selector = document.getElementById('select-basic-' + make);
+    model = (selector.value).replace(/\s/g, "");
+
+    // Submit new post request to home
+    var form = document.getElementById('invisible-submittable');
+
+    var makeAttr = document.createElement('input');
+    makeAttr.setAttribute('type', 'text');
+    makeAttr.setAttribute('name', 'make');
+    makeAttr.setAttribute('value', make);
+    form.appendChild(makeAttr);
+
+    var modelAttr = document.createElement('input');
+    modelAttr.setAttribute('type', 'text');
+    modelAttr.setAttribute('name', 'model');
+    modelAttr.setAttribute('value', model);
+    form.appendChild(modelAttr);
+
+    var latAttr = document.createElement('input');
+    latAttr.setAttribute('type','text');
+    latAttr.setAttribute('name', 'latitude');
+    latAttr.setAttribute('value', lat);
+    form.appendChild(latAttr);
+
+    var longAttr = document.createElement('input');
+    longAttr.setAttribute('type','text');
+    longAttr.setAttribute('name', 'longitude');
+    longAttr.setAttribute('value', long);
+    form.appendChild(longAttr);
+
+    form.submit();
+}
+
 (function ($) {
     'use strict';
     /*==================================================================

@@ -187,7 +187,7 @@ a:active {
    #BACKGROUND
    ========================================================================== */
 .bg-color-1 {
-  background: #e2fbfd;
+  background: linear-gradient(180deg, rgba(108,176,155,1) 66%, rgba(71,122,107,1) 93%);
 }
 
 /* ==========================================================================
@@ -265,7 +265,7 @@ a:active {
   width: 100%;
   line-height: 50px;
   font-family: inherit;
-  background: #22b352;
+  background:  rgba(108,176,155,1);
   text-transform: uppercase;
   color: #fff;
   font-size: 16px;
@@ -277,7 +277,7 @@ a:active {
 }
 
 .btn-submit:hover {
-  background: #209b49;
+  background:  rgba(108,176,155,.6);
 }
 
 .m-t-0 {
@@ -837,8 +837,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after {
-  font-family: "Material-Design-Iconic-Font";
-  content: '\f2f9';
+  content: '^';
+  font-weight: 900;
   font-size: 24px;
   color: #808080;
   -webkit-transition: all 0.4s ease;
@@ -875,7 +875,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background: #209b49;
+  background:  rgba(108,176,155,1);
 }
 
 /* ==========================================================================
@@ -925,7 +925,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
   font-weight: 500;
   font-size: 22px;
-  color: rgba(85, 85, 85, 0.6);
+  color:gray;
   padding: 0 20px;
 }
 

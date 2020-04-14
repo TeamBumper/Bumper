@@ -4,6 +4,8 @@ var colors= ['purple','blue','indigo','cyan','lime','brown'];
 var js_passthrough = JSON.parse(document.getElementById('js-passthrough').innerText);
 var search_params = js_passthrough['search_params'];
 
+var no_cards_found = document.getElementById('no-cards-found');
+
 getCars();
 
 function getRandomColor() {
@@ -15,14 +17,14 @@ function getRandomColor() {
 	return color;
   }
 function getCars() {
-	endpoint = "/search";
-	delimiter = "?";
+	var email = localStorage.getItem('email');
+	endpoint = "/search?email=" + email;
+
 	console.log("Building search query...");
 	for (const [key, value] of Object.entries(search_params)) {
 		if(value != "") {
 			console.log("\t" + key + " -> " + value);
-			endpoint += (delimiter + key + "=" + value);
-			delimiter = "&";
+			endpoint += ("&" + key + "=" + value);
 		} else {
 			console.log("\tEmpty key: " + key);
 		}
@@ -35,9 +37,13 @@ function handleCars(response) {
 	var j_object = JSON.parse(object);
 	card_cont = document.getElementById('card-cont');
 	allCars = j_object['listings'];
-	allCars.forEach((car) => {
-		buildCard(car);
-	});
+	if(allCars.length == 0) {
+		no_cards_found.style.display = "flex";
+	} else {
+		allCars.forEach((car) => {
+			buildCard(car);
+		});
+	}
 }
 
 
@@ -94,7 +100,7 @@ function buildCard(car) {
 	if (car['miles']) {
 		miles.innerHTML = addCommas(car['miles']) + "<span style='font-size:35px'>miles</span>";
 	} else {
-		miles.innerHTML = "Ask Alan";
+		miles.innerHTML = "N/A" + "<span style='font-size:35px'>miles</span>";
 	}
 	card_bot_header.appendChild(miles);
 

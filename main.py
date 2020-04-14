@@ -7,8 +7,8 @@ from flask_restful import Api
 app = Flask(__name__)
 
 # Setup Mongo
-app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
-# app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
+# app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
 mongo = PyMongo(app)
 users = mongo.db.users
 car_preferences = mongo.db.car_preferences
@@ -42,11 +42,15 @@ def home_screen():
     # Anything requring a specific user, states
     make = ""
     model = ""
+    latitude = ""
+    longitude = ""
     if request.method == 'POST':
         if request.form['make'] != None:
             make = request.form['make']
             model = request.form['model']
+            latitude = request.form['latitude']
+            longitude = request.form['longitude']
             if model == 'All Models':
                 model = ''
 
-    return render_template('home/home.html', make=make, model=model)
+    return render_template('home/home.html', make=make, model=model, latitude=latitude, longitude=longitude)

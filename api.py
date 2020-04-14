@@ -80,8 +80,9 @@ class API_checkUser(Resource):
 
 class API_searchMarketCheck(Resource):
     def get(self):
-        print("doing search")
-        args = parser.parse_args()        
+        args = parser.parse_args()
+        user_email = args['email']
+        self.getSeenCars(user_email)        
         system = SearchSystem()
         system.setFilter('start', '0')
         system.setFilter('rows', '100')
@@ -90,6 +91,13 @@ class API_searchMarketCheck(Resource):
                 system.setFilter(param, args[param])            
         found_cars = system.search()
         return json.dumps(found_cars)
+
+    def getSeenCars(self, email):
+        from main import car_preferences
+        filter = {"email": email}
+        user_info = car_preferences.find(filter)
+        # print("User info is " + user_info)
+
 
 class API_carPreferences(Resource):
     def put(self):
