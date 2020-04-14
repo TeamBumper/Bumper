@@ -1,6 +1,7 @@
 from flask_restful import reqparse, abort, Api, Resource
 from marketcheck import SearchSystem
 import json
+import urllib.parse
 
 parser = reqparse.RequestParser()
 parser.add_argument('email')
@@ -131,7 +132,7 @@ class API_carPreferences(Resource):
             }
         else:
             key_value = {
-                args['vin']: args['value']+" " + args['data']
+                args['vin']: args['value']+" " + urllib.parse.unquote(args['data'])
             }
         email = args['email']
         filter = {"email": email}

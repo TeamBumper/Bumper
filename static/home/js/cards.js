@@ -57,7 +57,8 @@ $(document).ready(function() {
 
 		var email = localStorage.getItem('email');
 
-		const data = JSON.stringify($card[0].data);
+		let data = JSON.stringify($card[0].data);
+		data = encodeURI(data);
 
 		console.log(data);
 		if (value === -1) {
