@@ -81,15 +81,43 @@ class API_checkUser(Resource):
 class API_searchMarketCheck(Resource):
     def get(self):
         print("doing search")
-        args = parser.parse_args()        
+        args = parser.parse_args()
         system = SearchSystem()
+        # Set relevant parameters/filters
         system.setFilter('start', '0')
         system.setFilter('rows', '100')
         for param in args:
             if args[param] is not None:
-                system.setFilter(param, args[param])            
+                system.setFilter(param, args[param])
         found_cars = system.search()
+
+        # Remove any vins already seen
+        user_email = args['email']
+        seenCars = self.getSeenCars(user_email)
+
+        listings = found_cars['listings']
+        for i in range(len(listings)-1, -1, -1):
+            car_dict = listings[i]
+            if car_dict['vin'] in seenCars:
+                print(car_dict['vin'])
+                del listings[i]
         return json.dumps(found_cars)
+
+    def getSeenCars(self, email):
+        from main import car_preferences
+
+        # Get user information with specified email
+        filter = {"email": email}
+        user_info = list(car_preferences.find(filter))[0]
+        # Remove irrelevant information
+        del user_info['_id']
+        del user_info['email']
+        # Make list of seen vin numbers
+        seen_cars = list()
+        for key in user_info:
+            seen_cars.append(key)
+
+        return seen_cars
 
 class API_carPreferences(Resource):
     def put(self):

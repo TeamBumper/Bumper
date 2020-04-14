@@ -15,14 +15,14 @@ function getRandomColor() {
 	return color;
   }
 function getCars() {
-	endpoint = "/search";
-	delimiter = "?";
+	var email = localStorage.getItem('email');
+	endpoint = "/search?email=" + email;
+
 	console.log("Building search query...");
 	for (const [key, value] of Object.entries(search_params)) {
 		if(value != "") {
 			console.log("\t" + key + " -> " + value);
-			endpoint += (delimiter + key + "=" + value);
-			delimiter = "&";
+			endpoint += ("&" + key + "=" + value);
 		} else {
 			console.log("\tEmpty key: " + key);
 		}
