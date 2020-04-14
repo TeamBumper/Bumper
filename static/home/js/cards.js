@@ -20,7 +20,7 @@ $(document).ready(function() {
 	}
 
 	function release() {
-	    var value;
+		var value;
 		if (pullDeltaX >= decisionVal) {
 			$card.addClass('to-right');
 			value = 1;
@@ -31,16 +31,17 @@ $(document).ready(function() {
 
 		if (Math.abs(pullDeltaX) >= decisionVal) {
 			$card.addClass('inactive');
-
 			setTimeout(function() {
-				$card.addClass('below').removeClass('inactive to-left to-right');
+			    var parent = $card.context.parentNode;
+			    var card_id = document.getElementById($card.context.id);
+				parent.removeChild(card_id);
 				cardsCounter++;
 				if (cardsCounter === numOfCards) {
 					cardsCounter = 0;
+					getCars();
 					$('.card').removeClass('below');
 				}
 			}, 300);
-
 		}
 
 		if (Math.abs(pullDeltaX) < decisionVal) {
@@ -54,8 +55,20 @@ $(document).ready(function() {
 			animating = false;
 		}, 300);
 
-        var email = localStorage.getItem("email")
-		makeRec('PUT', '/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email, nothing);
+		var email = localStorage.getItem('email');
+
+		const data = JSON.stringify($card[0].data);
+
+		console.log(data);
+		if (value === -1) {
+			makeRec('PUT', '/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email, nothing);
+		} else {
+			makeRec(
+				'PUT',
+				'/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email + '&data=' + data,
+				nothing
+			);
+		}
 	}
 
 	$(document).on('mousedown touchstart', '.card:not(.inactive)', function(e) {
@@ -81,7 +94,7 @@ $(document).ready(function() {
 	});
 });
 
-function nothing(){}
+function nothing() {}
 
 /* AJAX Boilerplate */
 function makeRec(method, target, handlerAction, data) {

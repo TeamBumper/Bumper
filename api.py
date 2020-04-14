@@ -2,7 +2,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from marketcheck import SearchSystem
 import json
 
-parser = reqparse.RequestParser() 
+parser = reqparse.RequestParser()
 parser.add_argument('email')
 parser.add_argument('access_token')
 parser.add_argument('car_type')
@@ -34,6 +34,8 @@ parser.add_argument('miles_max')
 parser.add_argument('days_on_market_min')
 parser.add_argument('days_on_market_max')
 parser.add_argument('value')
+parser.add_argument('data')
+
 
 class API_addUser(Resource):
     def post(self):
@@ -42,12 +44,12 @@ class API_addUser(Resource):
         access_token = args['access_token']
 
         record = {
-            'email':email,
-            'access_token':access_token,
+            'email': email,
+            'access_token': access_token,
         }
 
         record2 = {
-            'email':email,
+            'email': email,
         }
 
         from main import users, car_preferences
@@ -55,6 +57,7 @@ class API_addUser(Resource):
         car_preferences.insert_one(record2)
         print("Here 2")
         return 200
+
 
 class API_checkUser(Resource):
     def get(self):
@@ -64,8 +67,8 @@ class API_checkUser(Resource):
         access_token = args['access_token']
 
         record = {
-            'email':email,
-            'access_token':access_token,
+            'email': email,
+            'access_token': access_token,
         }
 
         from main import users
@@ -73,39 +76,63 @@ class API_checkUser(Resource):
         if users.find_one(record) is not None:
             print("Marcus wtf")
             return 200
-        
-        else:        
+
+        else:
             print("Alan wtf")
             return 404
 
+
 class API_searchMarketCheck(Resource):
     def get(self):
+        print("doing search")
         args = parser.parse_args()
-        user_email = args['email']
-        self.getSeenCars(user_email)        
         system = SearchSystem()
-        system.setFilter('start', '0')
-        system.setFilter('rows', '100')
+        user_email = args['email']
+        seenCars = self.getSeenCars(user_email)
+        # Set relevant parameters/filters
+        system.setFilter('start', str(len(seenCars)))
+        system.setFilter('rows', '10')
         for param in args:
             if args[param] is not None:
-                system.setFilter(param, args[param])            
+                system.setFilter(param, args[param])
         found_cars = system.search()
+
+        # Remove any vins already seen
+        listings = found_cars['listings']
+        for i in range(len(listings)-1, -1, -1):
+            car_dict = listings[i]
+            if car_dict['vin'] in seenCars:
+                del listings[i]
         return json.dumps(found_cars)
 
     def getSeenCars(self, email):
         from main import car_preferences
+
+        # Get user information with specified email
         filter = {"email": email}
-        user_info = car_preferences.find(filter)
-        # print("User info is " + user_info)
+        user_info = list(car_preferences.find(filter))[0]
+        # Remove irrelevant information
+        del user_info['_id']
+        del user_info['email']
+        # Make list of seen vin numbers
+        seen_cars = list()
+        for key in user_info:
+            seen_cars.append(key)
+
+        return seen_cars
 
 
 class API_carPreferences(Resource):
     def put(self):
         args = parser.parse_args()
-        key_value = {
-            args['vin']:args['value']
-        }
-
+        if args['value'] == '-1':
+            key_value = {
+                args['vin']: args['value']
+            }
+        else:
+            key_value = {
+                args['vin']: args['value']+" " + args['data']
+            }
         email = args['email']
         filter = {"email": email}
         newvalues = {"$set": key_value}
@@ -116,7 +143,6 @@ class API_carPreferences(Resource):
         # user_info_cars = user_info['car_table']
         # user_info_cars.update(key_value)
         car_preferences.update_one(filter, newvalues)
-
 
         # print(user_info)
         # print(user_info_cars)

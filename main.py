@@ -7,8 +7,8 @@ from flask_restful import Api
 app = Flask(__name__)
 
 # Setup Mongo
-# app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
-app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
+app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
+#app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
 mongo = PyMongo(app)
 users = mongo.db.users
 car_preferences = mongo.db.car_preferences
@@ -25,6 +25,7 @@ api.add_resource(API_carPreferences, '/car_preferences')
 @app.route('/')
 def init():
     return render_template('welcome/welcome.html')
+
 
 @app.route('/search_page')
 def search_page():
