@@ -31,12 +31,14 @@ $(document).ready(function() {
 
 		if (Math.abs(pullDeltaX) >= decisionVal) {
 			$card.addClass('inactive');
-
 			setTimeout(function() {
-				$card.addClass('below').removeClass('inactive to-left to-right');
+			    var parent = $card.context.parentNode;
+			    var card_id = document.getElementById($card.context.id);
+				parent.removeChild(card_id);
 				cardsCounter++;
 				if (cardsCounter === numOfCards) {
 					cardsCounter = 0;
+					getCars();
 					$('.card').removeClass('below');
 				}
 			}, 300);

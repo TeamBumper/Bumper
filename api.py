@@ -83,23 +83,21 @@ class API_searchMarketCheck(Resource):
         print("doing search")
         args = parser.parse_args()
         system = SearchSystem()
+        user_email = args['email']
+        seenCars = self.getSeenCars(user_email)
         # Set relevant parameters/filters
-        system.setFilter('start', '0')
-        system.setFilter('rows', '100')
+        system.setFilter('start', str(len(seenCars)))
+        system.setFilter('rows', '10')
         for param in args:
             if args[param] is not None:
                 system.setFilter(param, args[param])
         found_cars = system.search()
 
         # Remove any vins already seen
-        user_email = args['email']
-        seenCars = self.getSeenCars(user_email)
-
         listings = found_cars['listings']
         for i in range(len(listings)-1, -1, -1):
             car_dict = listings[i]
             if car_dict['vin'] in seenCars:
-                print(car_dict['vin'])
                 del listings[i]
         return json.dumps(found_cars)
 
