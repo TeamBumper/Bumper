@@ -101,11 +101,7 @@ function buildCard(car) {
 	if (car['miles']) {
 		miles.innerHTML = addCommas(car['miles']) + "<span style='font-size:35px'>miles</span>";
 	} else {
-<<<<<<< HEAD
-		miles.innerHTML = "N/A" + "<span style='font-size:35px'>miles</span>";
-=======
 		miles.innerHTML = 'Ask Alan';
->>>>>>> 45821bda15d28f70319d2b88f023f8e1d5b2646a
 	}
 	card_bot_header.appendChild(miles);
 
