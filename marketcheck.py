@@ -13,7 +13,6 @@ class SearchSystem():
 
     def search(self):
         #build the url
-        print("Searching")
         query = "http://api.marketcheck.com/v2/search/car/active?api_key={0}".format(api_key)
         for param in self.filters:                        
             filter = "&{0}={1}".format(param, self.filters[param])

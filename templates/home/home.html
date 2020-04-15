@@ -16,7 +16,14 @@
     <div class="cardstack_container">
         <div class="cardstack_inner_container" id='cardstack-container'>
             <div class="cardstack_cards" id="card-cont">
-            <!--cards go here-->
+                <div class="no-cards-found" id="no-cards-found">
+                    <div class="no-cards-found-smiley">
+                        &#9785;
+                    </div>
+                    <div class="no-cards-found-narrative">
+                        Sorry. No results found for {{make}} {{model}}. Try expanding your search.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,7 +38,9 @@
     "keys-pic" : "{{ url_for('static', filename='home/img/keys.png') }}",
     "search_params" : {
         "make" : "{{ make }}",
-        "model" : "{{ model }}"
+        "model" : "{{ model }}",
+        "latitude" : " {{ latitude }}",
+        "longitude" : " {{ longitude }}"
     }
 }
 </div>

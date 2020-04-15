@@ -1,8 +1,9 @@
 from flask_restful import reqparse, abort, Api, Resource
 from marketcheck import SearchSystem
 import json
+import urllib.parse
 
-parser = reqparse.RequestParser() 
+parser = reqparse.RequestParser()
 parser.add_argument('email')
 parser.add_argument('access_token')
 parser.add_argument('car_type')
@@ -34,6 +35,8 @@ parser.add_argument('miles_max')
 parser.add_argument('days_on_market_min')
 parser.add_argument('days_on_market_max')
 parser.add_argument('value')
+parser.add_argument('data')
+
 
 class API_addUser(Resource):
     def post(self):
@@ -42,12 +45,12 @@ class API_addUser(Resource):
         access_token = args['access_token']
 
         record = {
-            'email':email,
-            'access_token':access_token,
+            'email': email,
+            'access_token': access_token,
         }
 
         record2 = {
-            'email':email,
+            'email': email,
         }
 
         from main import users, car_preferences
@@ -55,6 +58,7 @@ class API_addUser(Resource):
         car_preferences.insert_one(record2)
         print("Here 2")
         return 200
+
 
 class API_checkUser(Resource):
     def get(self):
@@ -64,8 +68,8 @@ class API_checkUser(Resource):
         access_token = args['access_token']
 
         record = {
-            'email':email,
-            'access_token':access_token,
+            'email': email,
+            'access_token': access_token,
         }
 
         from main import users
@@ -73,10 +77,11 @@ class API_checkUser(Resource):
         if users.find_one(record) is not None:
             print("Marcus wtf")
             return 200
-        
-        else:        
+
+        else:
             print("Alan wtf")
             return 404
+
 
 class API_searchMarketCheck(Resource):
     def get(self):
@@ -117,13 +122,18 @@ class API_searchMarketCheck(Resource):
 
         return seen_cars
 
+
 class API_carPreferences(Resource):
     def put(self):
         args = parser.parse_args()
-        key_value = {
-            args['vin']:args['value']
-        }
-
+        if args['value'] == '-1':
+            key_value = {
+                args['vin']: args['value']
+            }
+        else:
+            key_value = {
+                args['vin']: args['value']+" " + urllib.parse.unquote(args['data'])
+            }
         email = args['email']
         filter = {"email": email}
         newvalues = {"$set": key_value}
@@ -134,7 +144,6 @@ class API_carPreferences(Resource):
         # user_info_cars = user_info['car_table']
         # user_info_cars.update(key_value)
         car_preferences.update_one(filter, newvalues)
-
 
         # print(user_info)
         # print(user_info_cars)
