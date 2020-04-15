@@ -38,8 +38,8 @@ $(document).ready(function() {
 				cardsCounter++;
 				if (cardsCounter === numOfCards) {
 					cardsCounter = 0;
-					getCars();
 					$('.card').removeClass('below');
+					getCars();
 				}
 			}, 300);
 
