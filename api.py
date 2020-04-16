@@ -36,6 +36,7 @@ parser.add_argument('days_on_market_min')
 parser.add_argument('days_on_market_max')
 parser.add_argument('value')
 parser.add_argument('data')
+parser.add_argument('zip')
 
 
 class API_addUser(Resource):
@@ -99,11 +100,12 @@ class API_searchMarketCheck(Resource):
         found_cars = system.search()
 
         # Remove any vins already seen
-        listings = found_cars['listings']
-        for i in range(len(listings)-1, -1, -1):
-            car_dict = listings[i]
-            if car_dict['vin'] in seenCars:
-                del listings[i]
+        if 'listings' in found_cars:
+            listings = found_cars['listings']
+            for i in range(len(listings)-1, -1, -1):
+                car_dict = listings[i]
+                if car_dict['vin'] in seenCars:
+                    del listings[i]
         return json.dumps(found_cars)
 
     def getSeenCars(self, email):

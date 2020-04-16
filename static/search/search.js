@@ -34,25 +34,6 @@ function getZipForLocation(x,y) {
         });
 }
 
-// call this first to get lat and long for entered zip code, then call submit advanced
-function submitAdvanced_first() {
-    zipToUse = document.getElementById('advanced-location').value;
-    fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=${zipToUse}&country=US&username=bumperapp`)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            try {
-                console.log(data);
-                lat = data['postalCodes'][0]['lat'];
-                long = data['postalCodes'][0]['lng'];
-            } catch (e) {
-                alert("Unable to determine location based on provided zip code.");
-            }
-            submitAdvanced();
-        });
-}
-
 let prev = document.getElementById('noMakeListed');
 let make = "All Models";
 function changeModel(carMake) {
@@ -73,8 +54,9 @@ function changeModelAdv(carMake) {
 }
 
 function submitBasic() {
-    var selector = document.getElementById('select-advanced-' + make);
+    var selector = document.getElementById('select-basic-' + make);
     model = (selector.value).replace(/\s/g, "");
+    console.log(model);
 
     // Submit new post request to home
     var form = document.getElementById('invisible-submittable');
@@ -91,17 +73,17 @@ function submitBasic() {
     modelAttr.setAttribute('value', model);
     form.appendChild(modelAttr);
 
-    var latAttr = document.createElement('input');
-    latAttr.setAttribute('type','text');
-    latAttr.setAttribute('name', 'latitude');
-    latAttr.setAttribute('value', lat);
-    form.appendChild(latAttr);
+    var zipEl = document.createElement('input');
+    zipEl.setAttribute('type','text');
+    zipEl.setAttribute('name', 'zip');
+    zipEl.setAttribute('value', zip);
+    form.appendChild(zipEl);
 
-    var longAttr = document.createElement('input');
-    longAttr.setAttribute('type','text');
-    longAttr.setAttribute('name', 'longitude');
-    longAttr.setAttribute('value', long);
-    form.appendChild(longAttr);
+    var radius = document.createElement('input');
+    radius.setAttribute('type','text');
+    radius.setAttribute('name','radius');
+    radius.setAttribute('value', '10');
+    form.appendChild(radius);
 
     form.submit();
 }
@@ -125,17 +107,17 @@ function submitAdvanced() {
     modelAttr.setAttribute('value', model);
     form.appendChild(modelAttr);
 
-    var latAttr = document.createElement('input');
-    latAttr.setAttribute('type','text');
-    latAttr.setAttribute('name', 'latitude');
-    latAttr.setAttribute('value', lat);
-    form.appendChild(latAttr);
+    var zipEl = document.createElement('input');
+    zipEl.setAttribute('type','text');
+    zipEl.setAttribute('name', 'zip');
+    zipEl.setAttribute('value', zip);
+    form.appendChild(zipEl);
 
-    var longAttr = document.createElement('input');
-    longAttr.setAttribute('type','text');
-    longAttr.setAttribute('name', 'longitude');
-    longAttr.setAttribute('value', long);
-    form.appendChild(longAttr);
+    var radius = document.createElement('input');
+    radius.setAttribute('type','text');
+    radius.setAttribute('name','radius');
+    radius.setAttribute('value', 10);
+    form.appendChild(radius);
 
     form.submit();
 }

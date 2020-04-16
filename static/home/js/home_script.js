@@ -23,8 +23,12 @@ function getCars() {
 	console.log('Building search query...');
 	for (const [ key, value ] of Object.entries(search_params)) {
 		if (value != '') {
+			if (key == "make") { // add to this if statement to skip \s replacing (messes up search)
+				endpoint += '&' + key + '=' + value;
+			} else {
+				endpoint += '&' + key + '=' + value.replace(/\s/g, "");
+			}
 			console.log('\t' + key + ' -> ' + value);
-			endpoint += '&' + key + '=' + value.replace(/\s/g, "");
 		} else {
 			console.log('\tEmpty key: ' + key);
 		}

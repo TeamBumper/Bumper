@@ -1,6 +1,6 @@
 import os
 from api import API_addUser, API_checkUser, API_searchMarketCheck, API_carPreferences, API_carLikes
-from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack
+from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack, send_from_directory
 from flask_pymongo import PyMongo
 from flask_restful import Api
 
@@ -23,6 +23,11 @@ api.add_resource(API_carLikes, '/car_likes')
 
 
 # Routing
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 
+                              'bumper.ico', mimetype='image/vnd.microsoft.icon')
+
 @app.route('/')
 def init():
     return render_template('welcome/welcome.html')
@@ -44,15 +49,15 @@ def home_screen():
     # Anything requring a specific user, states
     make = ""
     model = ""
-    latitude = ""
-    longitude = ""
+    zip_code = ""
+    radius = ""
     if request.method == 'POST':
         if request.form['make'] != None:
             make = request.form['make']
             model = request.form['model']
-            latitude = request.form['latitude']
-            longitude = request.form['longitude']
+            zip_code = request.form['zip']
+            radius = request.form['radius']
             if model == 'AllModels':
                 model = ''
 
-    return render_template('home/home.html', make=make, model=model, latitude=latitude, longitude=longitude)
+    return render_template('home/home.html', make=make, model=model, zip_code=zip_code, radius=radius)

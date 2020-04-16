@@ -108,7 +108,6 @@ function makeRec(method, target, handlerAction, data) {
 
 	httpRequest.onreadystatechange = function() {
 		if (httpRequest.readyState === XMLHttpRequest.DONE) {
-			console.log('DONEDONEDONE');
 			handlerAction(httpRequest);
 		}
 	};
