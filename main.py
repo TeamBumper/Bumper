@@ -52,7 +52,7 @@ def home_screen():
             model = request.form['model']
             latitude = request.form['latitude']
             longitude = request.form['longitude']
-            if model == 'All Models':
+            if model == 'AllModels':
                 model = ''
 
     return render_template('home/home.html', make=make, model=model, latitude=latitude, longitude=longitude)
