@@ -1,17 +1,56 @@
 let lat;
 let long;
+let zip;
 getLocation();
 function getLocation() {
     navigator.geolocation.getCurrentPosition(function(position) {
         lat = position.coords.latitude;
         long = position.coords.longitude;
         setCoordinates(lat,long);
+        if (lat != undefined && long != undefined) {
+            getZipForLocation(lat, long);
+        }
     });
 }
 
 function setCoordinates(x,y) {
     lat = x;
     long = y;
+}
+
+// Convert lat/long (x,y) to zip (stored in zip)
+function getZipForLocation(x,y) {
+    fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${x}&lng=${y}&username=bumperapp`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            try {
+                zip = data['postalCodes'][0]['postalCode'];
+                document.getElementById('advanced-location').value = zip;
+            } catch (e) {
+                zip = "";
+            }
+        });
+}
+
+// call this first to get lat and long for entered zip code, then call submit advanced
+function submitAdvanced_first() {
+    zipToUse = document.getElementById('advanced-location').value;
+    fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=${zipToUse}&country=US&username=bumperapp`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            try {
+                console.log(data);
+                lat = data['postalCodes'][0]['lat'];
+                long = data['postalCodes'][0]['lng'];
+            } catch (e) {
+                alert("Unable to determine location based on provided zip code.");
+            }
+            submitAdvanced();
+        });
 }
 
 let prev = document.getElementById('noMakeListed');
@@ -23,9 +62,18 @@ function changeModel(carMake) {
     cont.style.display = 'block';
     prev = cont;
 }
+let prevAdv = document.getElementById('noMakeListed-adv');
+let makeAdv = "All Models";
+function changeModelAdv(carMake) {
+    makeAdv = carMake;
+    prevAdv.style.display = 'none';
+    var cont = document.getElementById(carMake+"-adv");
+    cont.style.display = 'block';
+    prevAdv = cont;  
+}
 
 function submitBasic() {
-    var selector = document.getElementById('select-basic-' + make);
+    var selector = document.getElementById('select-advanced-' + make);
     model = (selector.value).replace(/\s/g, "");
 
     // Submit new post request to home
@@ -35,6 +83,40 @@ function submitBasic() {
     makeAttr.setAttribute('type', 'text');
     makeAttr.setAttribute('name', 'make');
     makeAttr.setAttribute('value', make);
+    form.appendChild(makeAttr);
+
+    var modelAttr = document.createElement('input');
+    modelAttr.setAttribute('type', 'text');
+    modelAttr.setAttribute('name', 'model');
+    modelAttr.setAttribute('value', model);
+    form.appendChild(modelAttr);
+
+    var latAttr = document.createElement('input');
+    latAttr.setAttribute('type','text');
+    latAttr.setAttribute('name', 'latitude');
+    latAttr.setAttribute('value', lat);
+    form.appendChild(latAttr);
+
+    var longAttr = document.createElement('input');
+    longAttr.setAttribute('type','text');
+    longAttr.setAttribute('name', 'longitude');
+    longAttr.setAttribute('value', long);
+    form.appendChild(longAttr);
+
+    form.submit();
+}
+
+function submitAdvanced() {
+    var selector = document.getElementById('select-advanced-' + makeAdv);
+    model = (selector.value).replace(/\s/g, "");
+
+    // Submit new post request to home
+    var form = document.getElementById('invisible-submittable');
+
+    var makeAttr = document.createElement('input');
+    makeAttr.setAttribute('type', 'text');
+    makeAttr.setAttribute('name', 'make');
+    makeAttr.setAttribute('value', makeAdv);
     form.appendChild(makeAttr);
 
     var modelAttr = document.createElement('input');

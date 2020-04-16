@@ -24,7 +24,7 @@ function getCars() {
 	for (const [ key, value ] of Object.entries(search_params)) {
 		if (value != '') {
 			console.log('\t' + key + ' -> ' + value);
-			endpoint += '&' + key + '=' + value;
+			endpoint += '&' + key + '=' + value.replace(/\s/g, "");
 		} else {
 			console.log('\tEmpty key: ' + key);
 		}

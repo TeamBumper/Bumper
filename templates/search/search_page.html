@@ -1565,20 +1565,1530 @@
                             </form>
                         </div>
                         <div class="tab-pane" id="tab2">
-                            <form method="POST" action="/home">
-                                <div class="input-group">
-                                    <label class="label">Make:</label>
-                                    <input class="input--style-1" type="text" name="make" placeholder="Chevrolet" required="required">
+                            <form>
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Make:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="make" id="basic-make" onChange="changeModelAdv(this.value)">
+                                                    <option selected="selected">All Makes</option>
+                                                    <option>Acura</option>
+                                                    <option>Alfa Romeo</option>
+                                                    <option>Audi</option>
+                                                    <option>BMW</option>
+                                                    <option>Buick</option>
+                                                    <option>Cadillac</option>
+                                                    <option>Chevrolet</option>
+                                                    <option>Chrysler</option>
+                                                    <option>Dodge</option>
+                                                    <option>FIAT</option>
+                                                    <option>Ford</option>
+                                                    <option>Genesis</option>
+                                                    <option>GMC</option>
+                                                    <option>Honda</option>
+                                                    <option>Hyundai</option>
+                                                    <option>INFINITI</option>
+                                                    <option>Jaguar</option>
+                                                    <option>Jeep</option>
+                                                    <option>Kia</option>
+                                                    <option>Land Rover</option>
+                                                    <option>Lexus</option>
+                                                    <option>Lincoln</option>
+                                                    <option>Maserati</option>
+                                                    <option>Mazda</option>
+                                                    <option>Mercedes-Benz</option>
+                                                    <option>MINI</option>
+                                                    <option>Mitubishi</option>
+                                                    <option>Nissan</option>
+                                                    <option>Pontiac</option>
+                                                    <option>Porsche</option>
+                                                    <option>RAM</option>
+                                                    <option>Scion</option>
+                                                    <option>Subaru</option>
+                                                    <option>Toyota</option>
+                                                    <option>Volkswagen</option>
+                                                    <option>Volvo</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="noMakeListed-adv" style="display: block;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model">
+                                                    <option selected="selected">All Models</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Acura-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Acura">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>ILX</option>
+                                                    <option>MDX</option>
+                                                    <option>MDX Hybrid Sport</option>
+                                                    <option>NSX</option>
+                                                    <option>RDX</option>
+                                                    <option>RL</option>
+                                                    <option>RLX</option>
+                                                    <option>RLX Hybrid Sport</option>
+                                                    <option>RSX</option>
+                                                    <option>TL</option>
+                                                    <option>TLX</option>
+                                                    <option>TSX</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Alfa Romeo-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Alfa Romeo">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Giulia</option>
+                                                    <option>Stelvio</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Audi-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Audi">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>A3</option>
+                                                    <option>A3 Sportback</option>
+                                                    <option>A4</option>
+                                                    <option>A4 Allroad</option>
+                                                    <option>A4 Avant</option>
+                                                    <option>A5</option>
+                                                    <option>A5 Sportback</option>
+                                                    <option>A6</option>
+                                                    <option>A6 Allroad</option>
+                                                    <option>A7</option>
+                                                    <option>A8</option>
+                                                    <option>A8 Hybrid Plug-In</option>
+                                                    <option>e-tron</option>
+                                                    <option>Q3</option>
+                                                    <option>Q5</option>
+                                                    <option>Q5 Hybrid Plug-in</option>
+                                                    <option>Q7</option>
+                                                    <option>Q8</option>
+                                                    <option>RS 7</option>
+                                                    <option>S3</option>
+                                                    <option>S4</option>
+                                                    <option>S5</option>
+                                                    <option>S5 Sportback</option>
+                                                    <option>S6</option>
+                                                    <option>S7</option>
+                                                    <option>S8</option>
+                                                    <option>SQ5</option>
+                                                    <option>TT</option>
+                                                    <option>TT RS</option>
+                                                    <option>TTS</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="BMW-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-BMW">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>1 Series</option>
+                                                    <option>2 Series</option>
+                                                    <option>3 Series</option>
+                                                    <option>3 Series Gran Turismo</option>
+                                                    <option>4 Series</option>
+                                                    <option>5 Series</option>
+                                                    <option>5 Series Gran Turismo</option>
+                                                    <option>6 Series</option>
+                                                    <option>6 Series Gran Turismo</option>
+                                                    <option>7 Series</option>
+                                                    <option>8 Series</option>
+                                                    <option>i3</option>
+                                                    <option>i8</option>
+                                                    <option>M2</option>
+                                                    <option>M3</option>
+                                                    <option>M4</option>
+                                                    <option>M5</option>
+                                                    <option>M6</option>
+                                                    <option>M8</option>
+                                                    <option>X1</option>
+                                                    <option>X2</option>
+                                                    <option>X3</option>
+                                                    <option>X3 M</option>
+                                                    <option>X4</option>
+                                                    <option>X4 M</option>
+                                                    <option>X5</option>
+                                                    <option>X5 M</option>
+                                                    <option>X6</option>
+                                                    <option>X6 M</option>
+                                                    <option>X7</option>
+                                                    <option>Z3</option>
+                                                    <option>Z4</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Buick-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Buick">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Cascada</option>
+                                                    <option>Century</option>
+                                                    <option>Enclave</option>
+                                                    <option>Encore</option>
+                                                    <option">Encore GX</option>
+                                                    <option>Envision</option>
+                                                    <option>LaCrosse</option>
+                                                    <option>LeSabre</option>
+                                                    <option>Lucerne</option>
+                                                    <option>Park Avenue</option>
+                                                    <option>Rainier</option>
+                                                    <option>Regal</option>
+                                                    <option>Regal Sportback</option>
+                                                    <option>Regal TourX</option>
+                                                    <option>Rendezvous</option>
+                                                    <option>Verano</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Cadillac-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Cadillac">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>ATS</option>
+                                                    <option>ATS Coupe</option>
+                                                    <option>ATS-V Coupe</option>
+                                                    <option>CT4</option>
+                                                    <option>CT5</option>
+                                                    <option>CT6</option>
+                                                    <option>CT6-V</option>
+                                                    <option>CTS</option>
+                                                    <option>CTS Coupe</option>
+                                                    <option>CTS-V</option>
+                                                    <option>CTS-V Coupe</option>
+                                                    <option>DeVille</option>
+                                                    <option>DTS</option>
+                                                    <option>Eldorado</option>
+                                                    <option>Escalade</option>
+                                                    <option>Escalade ESV</option>
+                                                    <option>Escalade EXT</option>
+                                                    <option>Seville</option>
+                                                    <option>SRX</option>
+                                                    <option>STS</option>
+                                                    <option>XLR</option>
+                                                    <option>XT4</option>
+                                                    <option>XT5</option>
+                                                    <option>XT6</option>
+                                                    <option>XTS</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Chevrolet-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Chevrolet">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Astro</option>
+                                                    <option>Avalanche</option>
+                                                    <option>Aveo</option>
+                                                    <option>Aveo5</option>
+                                                    <option>Beretta</option>
+                                                    <option>Blazer</option>
+                                                    <option>Bolt</option>
+                                                    <option>C/K Truck</option>
+                                                    <option>Camaro</option>
+                                                    <option>Caprice</option>
+                                                    <option>Captiva Sport</option>
+                                                    <option>Cavalier</option>
+                                                    <option>Celebrity</option>
+                                                    <option>Chevette</option>
+                                                    <option>Citation</option>
+                                                    <option>City Express</option>
+                                                    <option>Cobalt</option>
+                                                    <option>Colorado</option>
+                                                    <option>Corsica</option>
+                                                    <option>Corvette</option>
+                                                    <option>Cruze</option>
+                                                    <option>El Camino</option>
+                                                    <option>Equinox</option>
+                                                    <option>Express 1500</option>
+                                                    <option>Express 2500</option>
+                                                    <option>Express 3500</option>
+                                                    <option>Express 4500</option>
+                                                    <option>G10</option>
+                                                    <option>G20</option>
+                                                    <option>G30</option>
+                                                    <option>HHR</option>
+                                                    <option>Impala</option>
+                                                    <option>Kodiak C4500</option>
+                                                    <option>Lumina</option>
+                                                    <option>Lumina APV</option>
+                                                    <option>LUV</option>
+                                                    <option>Malibu</option>
+                                                    <option>Metro</option>
+                                                    <option>Monte Carlo</option>
+                                                    <option>Nova</option>
+                                                    <option>Prizm</option>
+                                                    <option>S10 Blazer</option>
+                                                    <option>S10 Pickup</option>
+                                                    <option>Silverado 1500</option>
+                                                    <option>Silverado 2500</option>
+                                                    <option>Silverado 3500</option>
+                                                    <option>Sonic</option>
+                                                    <option>Spark</option>
+                                                    <option>Spectrum</option>
+                                                    <option>Sprint</option>
+                                                    <option>SS</option>
+                                                    <option>SSR</option>
+                                                    <option>Suburban</option>
+                                                    <option>Tahoe</option>
+                                                    <option>Tracker</option>
+                                                    <option>TrailBlazer</option>
+                                                    <option>TrailBlazer EXT</option>
+                                                    <option>Traverse</option>
+                                                    <option>Trax</option>
+                                                    <option>Uplander</option>
+                                                    <option>Venture</option>
+                                                    <option>Volt</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Chrysler-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Chrystler">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>200</option>
+                                                    <option>300</option>
+                                                    <option>300M</option>
+                                                    <option>Aspen</option>
+                                                    <option>Cirrus</option>
+                                                    <option>Concorde</option>
+                                                    <option>Conquest</option>
+                                                    <option>Cordoba</option>
+                                                    <option>Crossfire</option>
+                                                    <option>E Class</option>
+                                                    <option>Fifth Avenue</option>
+                                                    <option>Grand Voyager</option>
+                                                    <option>Imperial</option>
+                                                    <option>Intrepid</option>
+                                                    <option>Laser</option>
+                                                    <option>LeBaron</option>
+                                                    <option>LeBaron GTS</option>
+                                                    <option>LHS</option>
+                                                    <option>New Yorker</option>
+                                                    <option>Newport</option>
+                                                    <option>Pacifica</option>
+                                                    <option>Prowler</option>
+                                                    <option>PT Cruiser</option>
+                                                    <option>Sebring</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Dodge-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Dodge">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>400</option>
+                                                    <option>600</option>
+                                                    <option>Aries</option>
+                                                    <option>Avenger</option>
+                                                    <option>B150</option>
+                                                    <option>B1500</option>
+                                                    <option>B250</option>
+                                                    <option>B2500</option>
+                                                    <option>B350</option>
+                                                    <option>B3500</option>
+                                                    <option>Caliber</option>
+                                                    <option>Caravan</option>
+                                                    <option>Challenger</option>
+                                                    <option>Charger</option>
+                                                    <option>Colt</option>
+                                                    <option>Conquest</option>
+                                                    <option>D/W Truck</option>
+                                                    <option>Dakota</option>
+                                                    <option>Dart</option>
+                                                    <option>Daytona</option>
+                                                    <option>Diplomat</option>
+                                                    <option>Durango</option>
+                                                    <option>Dynasty</option>
+                                                    <option>Grand Caravan</option>
+                                                    <option>Intrepid</option>
+                                                    <option>Journey</option>
+                                                    <option>Lancer</option>
+                                                    <option>Magnum</option>
+                                                    <option>Mirada</option>
+                                                    <option>Monaco</option>
+                                                    <option>Neon</option>
+                                                    <option>Nitro</option>
+                                                    <option>Omni</option>
+                                                    <option>Raider</option>
+                                                    <option>Ram 1500 Truck</option>
+                                                    <option>Ram 2500 Truck</option>
+                                                    <option>Ram 3500 Truck</option>
+                                                    <option>Ram 4500 Truck</option>
+                                                    <option>Ram 50 Truck</option>
+                                                    <option>Ram 5500 Truck</option>
+                                                    <option>Ram SRT-10</option>
+                                                    <option>Ramcharger</option>
+                                                    <option>Rampage</option>
+                                                    <option>Shadow</option>
+                                                    <option>Spirit</option>
+                                                    <option>Sprinter</option>
+                                                    <option>SRT-4</option>
+                                                    <option>St. Regis</option>
+                                                    <option>Stealth</option>
+                                                    <option>Stratus</option>
+                                                    <option>Viper</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="FIAT-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-FIAT">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>124 Spider</option>
+                                                    <option>2000 Spider</option>
+                                                    <option>500</option>
+                                                    <option>500L</option>
+                                                    <option>500X</option>
+                                                    <option>Bertone X1/9</option>
+                                                    <option>Brava</option>
+                                                    <option>Pininfarina Spider</option>
+                                                    <option>Strada</option>
+                                                    <option>X1/9</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Ford-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Ford">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Aerostar</option>
+                                                    <option>Aspire</option>
+                                                    <option>Bronco</option>
+                                                    <option>Bronco II</option>
+                                                    <option>C-MAX</option>
+                                                    <option>Contour</option>
+                                                    <option>Courier</option>
+                                                    <option>Crown Victoria</option>
+                                                    <option>E-100</option>
+                                                    <option>E-150 and Econoline 150</option>
+                                                    <option>E-250 and Econoline 250</option>
+                                                    <option>E-350 and Econoline 350</option>
+                                                    <option>E-450 and Econoline 450</option>
+                                                    <option>EcoSport</option>
+                                                    <option>Edge</option>
+                                                    <option>Escape</option>
+                                                    <option>Escort</option>
+                                                    <option>Excursion</option>
+                                                    <option>EXP</option>
+                                                    <option>Expedition</option>
+                                                    <option>Expedition EL</option>
+                                                    <option>Expedition Max</option>
+                                                    <option>Explorer</option>
+                                                    <option>Explorer Sport Trac</option>
+                                                    <option>F100</option>
+                                                    <option>F150</option>
+                                                    <option>F250</option>
+                                                    <option>F350</option>
+                                                    <option>F450</option>
+                                                    <option>Fairmont</option>
+                                                    <option>Festiva</option>
+                                                    <option>Fiesta</option>
+                                                    <option>Five Hundred</option>
+                                                    <option>Flex</option>
+                                                    <option>Focus</option>
+                                                    <option>Freestar</option>
+                                                    <option>Freestyle</option>
+                                                    <option>Fusion</option>
+                                                    <option>Granada</option>
+                                                    <option>GT</option>
+                                                    <option>LTD</option>
+                                                    <option>Mustang</option>
+                                                    <option>Probe</option>
+                                                    <option>Ranger</option>
+                                                    <option>Taurus</option>
+                                                    <option>Taurus X</option>
+                                                    <option>Tempo</option>
+                                                    <option>Thunderbird</option>
+                                                    <option>Transit 150</option>
+                                                    <option>Transit 250</option>
+                                                    <option>Transit 350</option>
+                                                    <option>Transit Connect</option>
+                                                    <option>Windstar</option>
+                                                    <option>ZX2 Escort</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Genesis-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Genesis">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>G70</option>
+                                                    <option>G80</option>
+                                                    <option>G90</option>
+                                                    <option>GV80</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="GMC-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-GMC">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Acadia</option>
+                                                    <option>Caballero</option>
+                                                    <option>Canyon</option>
+                                                    <option>Envoy</option>
+                                                    <option>Envoy XL</option>
+                                                    <option>Envoy XUV</option>
+                                                    <option>G1500</option>
+                                                    <option>G2500</option>
+                                                    <option>G3500</option>
+                                                    <option>Jimmy</option>
+                                                    <option>S15 Jimmy</option>
+                                                    <option>S15 Pickup</option>
+                                                    <option>Safari</option>
+                                                    <option>Savana 1500</option>
+                                                    <option>Savana 2500</option>
+                                                    <option>Savana 3500</option>
+                                                    <option>Savana 4500</option>
+                                                    <option>Sierra 1500</option>
+                                                    <option>Sierra 2500</option>
+                                                    <option>Sierra 3500</option>
+                                                    <option>Sonoma</option>
+                                                    <option>Suburban</option>
+                                                    <option>Syclone</option>
+                                                    <option>Terrain</option>
+                                                    <option>TopKick C4500</option>
+                                                    <option>Typhoon</option>
+                                                    <option>Yukon</option>
+                                                    <option>Yukon XL</option>
+                                                    <option>Other GMC Models</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Honda-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Honda">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Accord</option>
+                                                    <option>Accord Crosstour</option>
+                                                    <option>Civic</option>
+                                                    <option>Clarity</option>
+                                                    <option>CR-V</option>
+                                                    <option>CR-Z</option>
+                                                    <option>Crosstour</option>
+                                                    <option>CRX</option>
+                                                    <option>Del Sol</option>
+                                                    <option>Element</option>
+                                                    <option>Fit</option>
+                                                    <option>HR-V</option>
+                                                    <option>Insight</option>
+                                                    <option>Odyssey</option>
+                                                    <option>Passport</option>
+                                                    <option>Pilot</option>
+                                                    <option>Prelude</option>
+                                                    <option>Ridgeline</option>
+                                                    <option>S2000</option>
+                                                    <option>Other Honda Models</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Hyundai-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Hyundai">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Accent</option>
+                                                    <option>Azera</option>
+                                                    <option>Elantra</option>
+                                                    <option>Elantra Coupe</option>
+                                                    <option>Elantra Touring</option>
+                                                    <option>Entourage</option>
+                                                    <option>Equus</option>
+                                                    <option>Excel</option>
+                                                    <option>Genesis</option>
+                                                    <option>Genesis Coupe</option>
+                                                    <option>Ioniq</option>
+                                                    <option>Kona</option>
+                                                    <option>Nexo</option>
+                                                    <option>Palisade</option>
+                                                    <option>Santa Fe</option>
+                                                    <option>Scoupe</option>
+                                                    <option>Sonata</option>
+                                                    <option>Tiburon</option>
+                                                    <option>Tucson</option>
+                                                    <option>Veloster</option>
+                                                    <option>Venue</option>
+                                                    <option>Veracruz</option>
+                                                    <option>XG300</option>
+                                                    <option>XG350</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="INFINITI-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-INFINITI">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>EX35</option>
+                                                    <option>EX37</option>
+
+                                                    <option>FX35</option>
+                                                    <option>FX37</option>
+                                                    <option>FX45</option>
+                                                    <option>FX50</option>
+
+                                                    <option>G20</option>
+                                                    <option>G25</option>
+                                                    <option>G35</option>
+                                                    <option>G37</option>
+                                                    <option>I30</option>
+                                                    <option>I35</option>
+                                                    <option>J30</option>
+                                                    <option>JX35</option>
+
+                                                    <option>M30</option>
+                                                    <option>M35</option>
+                                                    <option>M35h</option>
+                                                    <option>M37</option>
+                                                    <option>M45</option>
+                                                    <option>M56</option>
+                                                    <option>Q40</option>
+                                                    <option>Q45</option>
+                                                    <option>Q50</option>
+                                                    <option>Q60</option>
+                                                    <option>Q70</option>
+                                                    <option>QX30</option>
+                                                    <option>QX4</option>
+                                                    <option>QX50</option>
+                                                    <option>QX56</option>
+                                                    <option>QX60</option>
+                                                    <option>QX70</option>
+                                                    <option>QX80</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Jaguar-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Jaguar">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>E-PACE</option>
+                                                    <option>F-PACE</option>
+                                                    <option>F-TYPE</option>
+                                                    <option>I-PACE</option>
+                                                    <option>S-TYPE</option>
+                                                    <option>X-TYPE</option>
+                                                    <option>XE</option>
+                                                    <option>XF</option>
+
+                                                    <option>XJ</option>
+                                                    <option>XJ Sport</option>
+                                                    <option>XJ Vanden Plas</option>
+                                                    <option>XJ12</option>
+                                                    <option>XJ6</option>
+                                                    <option>XJ8</option>
+                                                    <option>XJ8 L</option>
+                                                    <option>XJR</option>
+                                                    <option>XJR-S</option>
+                                                    <option>XJS</option>
+
+                                                    <option>XK</option>
+                                                    <option>XK8</option>
+                                                    <option>XKR</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Jeep-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Jeep">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Cherokee</option>
+                                                    <option>CJ</option>
+                                                    <option>Comanche</option>
+                                                    <option>Commander</option>
+                                                    <option>Compass</option>
+                                                    <option>Gladiator</option>
+                                                    <option>Grand Cherokee</option>
+                                                    <option>Grand Wagoneer</option>
+                                                    <option>Liberty</option>
+                                                    <option>Patriot</option>
+                                                    <option>Pickup</option>
+                                                    <option>Renegade</option>
+                                                    <option>Scrambler</option>
+                                                    <option>Wagoneer</option>
+                                                    <option>Wrangler</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Kia-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Kia">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Amanti</option>
+                                                    <option>Borrego</option>
+                                                    <option>Cadenza</option>
+                                                    <option>Forte</option>
+                                                    <option>Forte Koup</option>
+                                                    <option>K900</option>
+                                                    <option>Niro</option>
+                                                    <option>Optima</option>
+                                                    <option>Rio</option>
+                                                    <option>Rio5</option>
+                                                    <option>Rondo</option>
+                                                    <option>Sedona</option>
+                                                    <option>Seltos</option>
+                                                    <option>Sephia</option>
+                                                    <option>Sorento</option>
+                                                    <option>Soul</option>
+                                                    <option>Spectra</option>
+                                                    <option>Spectra5</option>
+                                                    <option>Sportage</option>
+                                                    <option>Stinger</option>
+                                                    <option>Telluride</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Land Rover-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Land Rover">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Defender</option>
+                                                    <option>Discovery</option>
+                                                    <option>Discovery Sport</option>
+                                                    <option>Freelander</option>
+                                                    <option>LR2</option>
+                                                    <option>LR3</option>
+                                                    <option>LR4</option>
+                                                    <option>Range Rover</option>
+                                                    <option>Range Rover Evoque</option>
+                                                    <option>Range Rover Sport</option>
+                                                    <option>Range Rover Velar</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Lexus-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Lexus">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>CT 200h</option>
+
+                                                    <option>ES 250</option>
+                                                    <option>ES 300</option>
+                                                    <option>ES 300h</option>
+                                                    <option>ES 330</option>
+                                                    <option>ES 350</option>
+
+                                                    <option>GS 200t</option>
+                                                    <option>GS 300</option>
+                                                    <option>GS 350</option>
+                                                    <option>GS 400</option>
+                                                    <option>GS 430</option>
+                                                    <option>GS 450h</option>
+                                                    <option>GS 460</option>
+                                                    <option>GS F</option>
+
+                                                    <option>GX 460</option>
+                                                    <option>GX 470</option>
+                                                    <option>HS 250h</option>
+
+                                                    <option>IS 200t</option>
+                                                    <option>IS 250</option>
+                                                    <option>IS 250C</option>
+                                                    <option>IS 300</option>
+                                                    <option>IS 350</option>
+                                                    <option>IS 350C</option>
+                                                    <option>IS F</option>
+
+                                                    <option>LC 500</option>
+                                                    <option>LC 500h</option>
+                                                    <option>LFA</option>
+
+                                                    <option>LS 400</option>
+                                                    <option>LS 430</option>
+                                                    <option>LS 460</option>
+                                                    <option>LS 500</option>
+                                                    <option>LS 500h</option>
+                                                    <option>LS 600h</option>
+
+                                                    <option>LX 450</option>
+                                                    <option>LX 470</option>
+                                                    <option>LX 570</option>
+
+                                                    <option>NX 200t</option>
+                                                    <option>NX 300</option>
+                                                    <option>NX 300h</option>
+
+                                                    <option>RC 200t</option>
+                                                    <option>RC 300</option>
+                                                    <option>RC 350</option>
+                                                    <option>RC F</option>
+
+                                                    <option>RX 300</option>
+                                                    <option>RX 330</option>
+                                                    <option>RX 350</option>
+                                                    <option>RX 350L</option>
+                                                    <option>RX 400h</option>
+                                                    <option>RX 450h</option>
+                                                    <option>RX 450hL</option>
+
+                                                    <option>SC 300</option>
+                                                    <option>SC 400</option>
+                                                    <option>SC 430</option>
+
+                                                    <option>UX 200</option>
+                                                    <option>UX 250h</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Lincoln-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Lincoln">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Aviator</option>
+                                                    <option>Blackwood</option>
+                                                    <option>Continental</option>
+                                                    <option>Corsair</option>
+                                                    <option>LS</option>
+                                                    <option>Mark LT</option>
+                                                    <option>Mark VI</option>
+                                                    <option>Mark VII</option>
+                                                    <option>Mark VIII</option>
+                                                    <option>MKC</option>
+                                                    <option>MKS</option>
+                                                    <option>MKT</option>
+                                                    <option>MKX</option>
+                                                    <option>MKZ</option>
+                                                    <option>Nautilus</option>
+                                                    <option>Navigator</option>
+                                                    <option>Navigator L</option>
+                                                    <option>Town Car</option>
+                                                    <option>Zephyr</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Maserati-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Maserati">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>430</option>
+                                                    <option>Biturbo</option>
+                                                    <option>Coupe</option>
+                                                    <option>Ghibli</option>
+                                                    <option>GranSport</option>
+                                                    <option>GranTurismo</option>
+                                                    <option>Levante</option>
+                                                    <option>Quattroporte</option>
+                                                    <option>Spyder</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Mazda-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Mazda">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>323</option>
+                                                    <option>626</option>
+                                                    <option>929</option>
+                                                    <option>B-Series Pickup</option>
+                                                    <option>CX-3</option>
+                                                    <option>CX-30</option>
+                                                    <option>CX-5</option>
+                                                    <option>CX-7</option>
+                                                    <option>CX-9</option>
+                                                    <option>GLC</option>
+                                                    <option>MAZDA2</option>
+                                                    <option>MAZDA3</option>
+                                                    <option>MAZDA5</option>
+                                                    <option>MAZDA6</option>
+                                                    <option>MAZDASPEED3</option>
+                                                    <option>MAZDASPEED6</option>
+                                                    <option>Millenia</option>
+                                                    <option>MPV</option>
+                                                    <option>MX-5 Miata</option>
+                                                    <option>MX-5 Miata RF</option>
+                                                    <option>MX3</option>
+                                                    <option>MX6</option>
+                                                    <option>Navajo</option>
+                                                    <option>Protege</option>
+                                                    <option>Protege5</option>
+                                                    <option>RX-7</option>
+                                                    <option>RX-8</option>
+                                                    <option>Tribute</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Mercedes-Benz-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Mercedes-Benz">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>190 D</option>
+                                                    <option>190 E</option>
+                                                    <option>240 D</option>
+                                                    <option>260 E</option>
+                                                    <option>280 CE</option>
+                                                    <option>280 E</option>
+                                                    <option>300 CD</option>
+                                                    <option>300 CE</option>
+                                                    <option>300 D</option>
+                                                    <option>300 E</option>
+                                                    <option>300 SD</option>
+                                                    <option>300 SDL</option>
+                                                    <option>300 SE</option>
+                                                    <option>300 SEL</option>
+                                                    <option>300 SL</option>
+                                                    <option>300 TD</option>
+                                                    <option>300 TE</option>
+                                                    <option>350 SD</option>
+                                                    <option>350 SDL</option>
+                                                    <option>380 SE</option>
+                                                    <option>380 SEC</option>
+                                                    <option>380 SEL</option>
+                                                    <option>380 SL</option>
+                                                    <option>380 SLC</option>
+                                                    <option>400 E</option>
+                                                    <option>400 SE</option>
+                                                    <option>400 SEL</option>
+                                                    <option>420 SEL</option>
+                                                    <option>500 E</option>
+                                                    <option>500 SEC</option>
+                                                    <option>500 SEL</option>
+                                                    <option>500 SL</option>
+                                                    <option>560 SEC</option>
+                                                    <option>560 SEL</option>
+                                                    <option>560 SL</option>
+                                                    <option>600 SEC</option>
+                                                    <option>600 SEL</option>
+                                                    <option>600 SL</option>
+
+                                                    <option>A 220</option>
+                                                    <option>AMG GT</option>
+
+                                                    <option>B 250e</option>
+                                                    <option>B-Class Electric Drive</option>
+
+                                                    <option>C 220</option>
+                                                    <option>C 230</option>
+                                                    <option>C 240</option>
+                                                    <option>C 250</option>
+                                                    <option>C 280</option>
+                                                    <option>C 300</option>
+                                                    <option>C 32 AMG</option>
+                                                    <option>C 320</option>
+                                                    <option>C 350</option>
+                                                    <option>C 350e</option>
+                                                    <option>C 36 AMG</option>
+                                                    <option>C 400</option>
+                                                    <option>C 43 AMG</option>
+                                                    <option>C 450</option>
+                                                    <option>C 55 AMG</option>
+                                                    <option>C 63 AMG</option>
+
+                                                    <option>CL 500</option>
+                                                    <option>CL 55 AMG</option>
+                                                    <option>CL 550</option>
+                                                    <option>CL 600</option>
+                                                    <option>CL 63 AMG</option>
+                                                    <option>CL 65 AMG</option>
+
+                                                    <option>CLA 250</option>
+                                                    <option>CLA 35 AMG</option>
+                                                    <option>CLA 45 AMG</option>
+
+                                                    <option>CLK 320</option>
+                                                    <option>CLK 350</option>
+                                                    <option>CLK 430</option>
+                                                    <option>CLK 500</option>
+                                                    <option>CLK 55 AMG</option>
+                                                    <option>CLK 550</option>
+                                                    <option>CLK 63 AMG</option>
+
+                                                    <option>CLS 400</option>
+                                                    <option>CLS 450</option>
+                                                    <option>CLS 500</option>
+                                                    <option>CLS 53 AMG</option>
+                                                    <option>CLS 55 AMG</option>
+                                                    <option>CLS 550</option>
+                                                    <option>CLS 63 AMG</option>
+
+                                                    <option>E 250</option>
+                                                    <option>E 300</option>
+                                                    <option>E 320</option>
+                                                    <option>E 350</option>
+                                                    <option>E 400</option>
+                                                    <option>E 420</option>
+                                                    <option>E 43 AMG</option>
+                                                    <option>E 430</option>
+                                                    <option>E 450</option>
+                                                    <option>E 500</option>
+                                                    <option>E 53 AMG</option>
+                                                    <option>E 55 AMG</option>
+                                                    <option>E 550</option>
+                                                    <option>E 63 AMG</option>
+
+                                                    <option>G 500</option>
+                                                    <option>G 55 AMG</option>
+                                                    <option>G 550</option>
+                                                    <option>G 63 AMG</option>
+                                                    <option>G 65 AMG</option>
+
+                                                    <option>GL 320</option>
+                                                    <option>GL 350</option>
+                                                    <option>GL 450</option>
+                                                    <option>GL 550</option>
+                                                    <option>GL 63 AMG</option>
+
+                                                    <option>GLA 250</option>
+                                                    <option>GLA 45 AMG</option>
+                                                    <option>GLB 250</option>
+
+                                                    <option>GLC 300</option>
+                                                    <option>GLC 350e</option>
+                                                    <option>GLC 43 AMG</option>
+                                                    <option>GLC 63 AMG</option>
+
+                                                    <option>GLE 300d</option>
+                                                    <option>GLE 350</option>
+                                                    <option>GLE 400</option>
+                                                    <option>GLE 43 AMG</option>
+                                                    <option>GLE 450</option>
+                                                    <option>GLE 550e</option>
+                                                    <option>GLE 580</option>
+                                                    <option>GLE 63 AMG</option>
+
+                                                    <option>GLK 250</option>
+                                                    <option>GLK 350</option>
+
+                                                    <option>GLS 350d</option>
+                                                    <option>GLS 450</option>
+                                                    <option>GLS 550</option>
+                                                    <option>GLS 580</option>
+                                                    <option>GLS 63 AMG</option>
+
+                                                    <option>ML 250</option>
+                                                    <option>ML 320</option>
+                                                    <option>ML 350</option>
+                                                    <option>ML 400</option>
+                                                    <option>ML 430</option>
+                                                    <option>ML 450</option>
+                                                    <option>ML 500</option>
+                                                    <option>ML 55 AMG</option>
+                                                    <option>ML 550</option>
+                                                    <option>ML 63 AMG</option>
+                                                    <option>Metris</option>
+
+                                                    <option>R 320</option>
+                                                    <option>R 350</option>
+                                                    <option>R 500</option>
+                                                    <option>R 63 AMG</option>
+
+                                                    <option>Maybach S 550</option>
+                                                    <option>Maybach S 560</option>
+                                                    <option>Maybach S 600</option>
+                                                    <option>Maybach S 650</option>
+                                                    <option>S 320</option>
+                                                    <option>S 350</option>
+                                                    <option>S 400</option>
+                                                    <option>S 420</option>
+                                                    <option>S 430</option>
+                                                    <option>S 450</option>
+                                                    <option>S 500</option>
+                                                    <option>S 55 AMG</option>
+                                                    <option>S 550</option>
+                                                    <option>S 550e</option>
+                                                    <option>S 560</option>
+                                                    <option>S 560e</option>
+                                                    <option>S 600</option>
+                                                    <option>S 63 AMG</option>
+                                                    <option>S 65 AMG</option>
+
+                                                    <option>SL 320</option>
+                                                    <option>SL 400</option>
+                                                    <option>SL 450</option>
+                                                    <option>SL 500</option>
+                                                    <option>SL 55 AMG</option>
+                                                    <option>SL 550</option>
+                                                    <option>SL 600</option>
+                                                    <option>SL 63 AMG</option>
+                                                    <option>SL 65 AMG</option>
+
+                                                    <option>SLC 300</option>
+                                                    <option>SLC 43 AMG</option>
+
+                                                    <option>SLK 230</option>
+                                                    <option>SLK 250</option>
+                                                    <option>SLK 280</option>
+                                                    <option>SLK 300</option>
+                                                    <option>SLK 32 AMG</option>
+                                                    <option>SLK 320</option>
+                                                    <option>SLK 350</option>
+                                                    <option>SLK 55 AMG</option>
+                                                    <option>SLR</option>
+                                                    <option>SLS AMG</option>
+                                                    <option>Sprinter</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="MINI-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-MINI">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Cooper</option>
+                                                    <option>Cooper Clubman</option>
+                                                    <option>Cooper Countryman</option>
+                                                    <option>Cooper Coupe</option>
+                                                    <option>Cooper Paceman</option>
+                                                    <option>Cooper Roadster</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Mitsubishi-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Mitsubishi">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>3000GT</option>
+                                                    <option>Cordia</option>
+                                                    <option>Diamante</option>
+                                                    <option>Eclipse</option>
+                                                    <option>Eclipse Cross</option>
+                                                    <option>Endeavor</option>
+                                                    <option>Expo</option>
+                                                    <option>Galant</option>
+                                                    <option>i</option>
+                                                    <option>Lancer</option>
+                                                    <option>Lancer Evolution</option>
+                                                    <option>Mighty Max</option>
+                                                    <option>Mirage</option>
+                                                    <option>Mirage G4</option>
+                                                    <option>Montero</option>
+                                                    <option>Montero Sport</option>
+                                                    <option>Outlander</option>
+                                                    <option>Outlander Sport</option>
+                                                    <option>Precis</option>
+                                                    <option>Raider</option>
+                                                    <option>Sigma</option>
+                                                    <option>Starion</option>
+                                                    <option>Tredia</option>
+                                                    <option>Van</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Nissan-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Nissan">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>200SX</option>
+                                                    <option>240SX</option>
+                                                    <option>300ZX</option>
+                                                    <option>350Z</option>
+                                                    <option>370Z</option>
+                                                    <option>Altima</option>
+                                                    <option>Armada</option>
+                                                    <option>Axxess</option>
+                                                    <option>Cube</option>
+                                                    <option>Frontier</option>
+                                                    <option>GT-R</option>
+                                                    <option>Juke</option>
+                                                    <option>Kicks</option>
+                                                    <option>Leaf</option>
+                                                    <option>Maxima</option>
+                                                    <option>Murano</option>
+                                                    <option>Murano CrossCabriolet</option>
+                                                    <option>NV</option>
+                                                    <option>NV200</option>
+                                                    <option>NX</option>
+                                                    <option>Pathfinder</option>
+                                                    <option>Pickup</option>
+                                                    <option>Pulsar</option>
+                                                    <option>Quest</option>
+                                                    <option>Rogue</option>
+                                                    <option>Rogue Sport</option>
+                                                    <option>Sentra</option>
+                                                    <option>Stanza</option>
+                                                    <option>Titan</option>
+                                                    <option>Van</option>
+                                                    <option>Versa</option>
+                                                    <option>Versa Note</option>
+                                                    <option>Xterra</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Pontiac-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Pontiac">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>1000</option>
+                                                    <option>6000</option>
+                                                    <option>Aztek</option>
+                                                    <option>Bonneville</option>
+                                                    <option>Catalina</option>
+                                                    <option>Fiero</option>
+                                                    <option>Firebird</option>
+                                                    <option>G3</option>
+                                                    <option>G5</option>
+                                                    <option>G6</option>
+                                                    <option>G8</option>
+                                                    <option>Grand Am</option>
+                                                    <option>Grand Prix</option>
+                                                    <option>GTO</option>
+                                                    <option>J2000</option>
+                                                    <option>Le Mans</option>
+                                                    <option>Montana</option>
+                                                    <option>Parisienne</option>
+                                                    <option>Phoenix</option>
+                                                    <option>Safari</option>
+                                                    <option>Solstice</option>
+                                                    <option>Sunbird</option>
+                                                    <option>Sunfire</option>
+                                                    <option>Torrent</option>
+                                                    <option>Trans Sport</option>
+                                                    <option>Vibe</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Porsche-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Porsche">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>718 Boxster</option>
+                                                    <option>718 Cayman</option>
+                                                    <option>911</option>
+                                                    <option>918 Spyder</option>
+                                                    <option>924</option>
+                                                    <option>928</option>
+                                                    <option>944</option>
+                                                    <option>968</option>
+                                                    <option>Boxster</option>
+                                                    <option>Carrera GT</option>
+                                                    <option>Cayenne</option>
+                                                    <option>Cayman</option>
+                                                    <option>Macan</option>
+                                                    <option>Panamera</option>
+                                                    <option>Taycan</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="RAM-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-RAM">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>1500</option>
+                                                    <option>2500</option>
+                                                    <option>3500</option>
+                                                    <option>4500</option>
+                                                    <option>5500</option>
+                                                    <option>C/V</option>
+                                                    <option>ProMaster</option>
+                                                    <option>ProMaster City</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Scion-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Scion">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>FR-S</option>
+                                                    <option>iA</option>
+                                                    <option>iM</option>
+                                                    <option>iQ</option>
+                                                    <option>tC</option>
+                                                    <option>xA</option>
+                                                    <option>xB</option>
+                                                    <option>xD</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Subaru-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Subaru">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Ascent</option>
+                                                    <option>Baja</option>
+                                                    <option>Brat</option>
+                                                    <option>BRZ</option>
+                                                    <option>Crosstrek</option>
+                                                    <option>Forester</option>
+                                                    <option>Impreza</option>
+                                                    <option>Impreza WRX</option>
+                                                    <option>Justy</option>
+                                                    <option>L Series</option>
+                                                    <option>Legacy</option>
+                                                    <option>Loyale</option>
+                                                    <option>Outback</option>
+                                                    <option>SVX</option>
+                                                    <option>Tribeca</option>
+                                                    <option>WRX</option>
+                                                    <option>XT</option>
+                                                    <option>XV Crosstrek</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Toyota-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Toyota">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>4Runner</option>
+                                                    <option>86</option>
+                                                    <option>Avalon</option>
+                                                    <option>C-HR</option>
+                                                    <option>Camry</option>
+                                                    <option>Celica</option>
+                                                    <option>Corolla</option>
+                                                    <option>Corona</option>
+                                                    <option>Cressida</option>
+                                                    <option>Echo</option>
+                                                    <option>FJ Cruiser</option>
+                                                    <option>Highlander</option>
+                                                    <option>Land Cruiser</option>
+                                                    <option>Matrix</option>
+                                                    <option>Mirai</option>
+                                                    <option>MR2</option>
+                                                    <option>MR2 Spyder</option>
+                                                    <option>Paseo</option>
+                                                    <option>Pickup</option>
+                                                    <option>Previa</option>
+                                                    <option>Prius</option>
+                                                    <option>Prius C</option>
+                                                    <option>Prius Prime</option>
+                                                    <option>Prius V</option>
+                                                    <option>RAV4</option>
+                                                    <option>Sequoia</option>
+                                                    <option>Sienna</option>
+                                                    <option>Solara</option>
+                                                    <option>Starlet</option>
+                                                    <option>Supra</option>
+                                                    <option>T100</option>
+                                                    <option>Tacoma</option>
+                                                    <option>Tercel</option>
+                                                    <option>Tundra</option>
+                                                    <option>Van</option>
+                                                    <option>Venza</option>
+                                                    <option>Yaris</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Volkswagen-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Volkswagen">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>Arteon</option>
+                                                    <option>Atlas</option>
+                                                    <option>Beetle</option>
+                                                    <option>Cabrio</option>
+                                                    <option>Cabriolet</option>
+                                                    <option>CC</option>
+                                                    <option>Corrado</option>
+                                                    <option>Dasher</option>
+                                                    <option>e-Golf</option>
+                                                    <option>Eos</option>
+                                                    <option>Eurovan</option>
+                                                    <option>Fox</option>
+                                                    <option>Golf</option>
+                                                    <option>Golf R</option>
+                                                    <option>GTI</option>
+                                                    <option>Jetta</option>
+                                                    <option>Passat</option>
+                                                    <option>Phaeton</option>
+                                                    <option>Pickup</option>
+                                                    <option>Quantum</option>
+                                                    <option>R32</option>
+                                                    <option>Rabbit</option>
+                                                    <option>Routan</option>
+                                                    <option>Scirocco</option>
+                                                    <option>Tiguan</option>
+                                                    <option>Touareg</option>
+                                                    <option>Vanagon</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Volvo-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Volvo">
+                                                    <option selected="selected">All Models</option>
+                                                    <option>240</option>
+                                                    <option>260</option>
+                                                    <option>740</option>
+                                                    <option>760</option>
+                                                    <option>780</option>
+                                                    <option>850</option>
+                                                    <option>940</option>
+                                                    <option>960</option>
+                                                    <option>C30</option>
+                                                    <option>C70</option>
+                                                    <option>S40</option>
+                                                    <option>S60</option>
+                                                    <option>S70</option>
+                                                    <option>S80</option>
+                                                    <option>S90</option>
+                                                    <option>V40</option>
+                                                    <option>V50</option>
+                                                    <option>V60</option>
+                                                    <option>V70</option>
+                                                    <option>V90</option>
+                                                    <option>XC40</option>
+                                                    <option>XC60</option>
+                                                    <option>XC70</option>
+                                                    <option>XC90</option>
+
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Zip Code:</label>
+                                        <input class="input--style-1" type="text" name="location" placeholder="15213" id="advanced-location">
+                                    </div>
                                 </div>
-                                <div class="input-group">
-                                    <label class="label">Model:</label>
-                                    <input class="input--style-1" type="text" name="model" placeholder="Tahoe">
-                                </div>
-                                <div class="input-group">
-                                    <label class="label">Location:</label>
-                                    <input class="input--style-1" type="text" name="location" placeholder="123 Bumper Ave">
-                                </div>
-                                <button class="btn-submit" type="submit">search</button>
+                                <button class="btn-submit m-t-0" type="button" onclick="submitAdvanced_first()">search</button>
                             </form>
                         </div>
                     </div>
