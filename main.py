@@ -1,5 +1,5 @@
 import os
-from api import API_addUser, API_checkUser, API_searchMarketCheck, API_carPreferences
+from api import API_addUser, API_checkUser, API_searchMarketCheck, API_carPreferences, API_carLikes
 from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack
 from flask_pymongo import PyMongo
 from flask_restful import Api
@@ -19,6 +19,7 @@ api.add_resource(API_addUser, '/adduser')
 api.add_resource(API_checkUser, '/checkuser')
 api.add_resource(API_searchMarketCheck, '/search')
 api.add_resource(API_carPreferences, '/car_preferences')
+api.add_resource(API_carLikes, '/car_likes')
 
 
 # Routing

@@ -123,6 +123,27 @@ class API_searchMarketCheck(Resource):
         return seen_cars
 
 
+class API_carLikes(Resource):
+    def get(self):
+        args = parser.parse_args()
+        system = SearchSystem()
+        email = args['email']
+        from main import car_preferences
+        filter = {"email": email}
+        full_list = list(car_preferences.find(filter))[0]
+        print(full_list)
+        del full_list['_id']
+        del full_list['email']
+        liked_list = list()
+        for car in full_list:
+            if full_list[car] == '-1':
+                del car
+            else:
+                liked_list.append(full_list[car][2:])
+                print(full_list[car][2:])
+        return json.dumps(liked_list)
+
+
 class API_carPreferences(Resource):
     def put(self):
         args = parser.parse_args()
@@ -132,7 +153,8 @@ class API_carPreferences(Resource):
             }
         else:
             key_value = {
-                args['vin']: args['value']+" " + urllib.parse.unquote(args['data'])
+                args['vin']: args['value']+" " +
+                urllib.parse.unquote(args['data'])
             }
         email = args['email']
         filter = {"email": email}
