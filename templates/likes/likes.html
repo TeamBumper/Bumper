@@ -2,13 +2,17 @@
 
 {% block head %}
     <meta charset="UTF-8"> 
-    <script type="text/javascript" src="/static/likes/likes.js"></script>   
+    <link rel="stylesheet" type="text/css" href="static/likes/likes.css">
+    <!-- <script type="text/javascript" src="/static/likes/likes.js"></script>    -->
 {% endblock %}
 
 {% block body %}
-This is your liked car page
+
 <body translate="no">
-    <div class='liked_car_container'>Your liked cars will show up here</div>
+    <div class='header'>Liked cars</div>
+    <div id='liked-cont' class='liked_car_container'></div>
+    <script type="text/javascript" src="/static/likes/likes.js"></script>   
+
 </body>
 
 {% endblock %}
