@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	var animating = false;
 	var cardsCounter = 0;
-	var numOfCards = 6;
 	var decisionVal = 80;
 	var pullDeltaX = 0;
 	var deg = 0;
@@ -36,7 +35,7 @@ $(document).ready(function() {
 			    var card_id = document.getElementById($card.context.id);
 				parent.removeChild(card_id);
 				cardsCounter++;
-				if (cardsCounter === numOfCards) {
+				if (cardsCounter === getNumCars()) {
 					cardsCounter = 0;
 					$('.card').removeClass('below');
 					getCars();
@@ -56,9 +55,9 @@ $(document).ready(function() {
 		}, 300);
 
 		var email = localStorage.getItem('email');
-
 		let data = JSON.stringify($card[0].data);
 		data = encodeURI(data);
+		data.replace(/&/g,'%26')
 
 		console.log(data);
 		if (value === -1) {

@@ -1,10 +1,11 @@
 var card_cont;
-var all_cars;
+var allCars;
 var colors = [ 'purple', 'blue', 'indigo', 'cyan', 'lime', 'brown' ];
 var js_passthrough = JSON.parse(document.getElementById('js-passthrough').innerText);
 var search_params = js_passthrough['search_params'];
-
+var numOfCars;
 var no_cards_found = document.getElementById('no-cards-found');
+var no_more_cards = document.getElementById('no-more-cards');
 
 getCars();
 
@@ -17,6 +18,7 @@ function getRandomColor() {
 	return color;
 }
 function getCars() {
+	numOfCars = 0;
 	var email = localStorage.getItem('email');
 	endpoint = '/search?email=' + email;
 
@@ -44,6 +46,7 @@ function handleCars(response) {
 	if(allCars.length == 0) {
 		no_cards_found.style.display = "flex";
 	} else {
+		no_more_cards.style.display = "flex";
 		allCars.forEach((car) => {
 			buildCard(car);
 		});
@@ -53,6 +56,7 @@ function handleCars(response) {
 function buildCard(car) {
 	// Card structure
 	if (car['media'] == null || car['price'] == null) return;
+	numOfCars++;
 	var new_card = document.createElement('div');
 	new_card.className = 'card';
 	new_card.id = car['vin'];
@@ -239,4 +243,8 @@ function LightenDarkenColor(colorCode, amount) {
 	}
 
 	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+}
+
+function getNumCars(){
+    return numOfCars;
 }

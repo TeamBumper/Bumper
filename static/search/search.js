@@ -1,6 +1,9 @@
 let lat;
 let long;
 let zip;
+let minPrice;
+let maxPrice;
+fillYears();
 getLocation();
 function getLocation() {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -35,7 +38,7 @@ function getZipForLocation(x,y) {
 }
 
 let prev = document.getElementById('noMakeListed');
-let make = "All Models";
+let make = "";
 function changeModel(carMake) {
     make = carMake;
     prev.style.display = 'none';
@@ -44,7 +47,7 @@ function changeModel(carMake) {
     prev = cont;
 }
 let prevAdv = document.getElementById('noMakeListed-adv');
-let makeAdv = "All Models";
+let makeAdv = "";
 function changeModelAdv(carMake) {
     makeAdv = carMake;
     prevAdv.style.display = 'none';
@@ -55,8 +58,10 @@ function changeModelAdv(carMake) {
 
 function submitBasic() {
     var selector = document.getElementById('select-basic-' + make);
-    model = (selector.value).replace(/\s/g, "");
-    console.log(model);
+    model = "";
+    if (selector) {
+        model = (selector.value).replace(/\s/g, "");
+    }
 
     // Submit new post request to home
     var form = document.getElementById('invisible-submittable');
@@ -90,7 +95,16 @@ function submitBasic() {
 
 function submitAdvanced() {
     var selector = document.getElementById('select-advanced-' + makeAdv);
-    model = (selector.value).replace(/\s/g, "");
+    model = "";
+    if (selector) {
+        model = (selector.value).replace(/\s/g, "");
+    }
+
+    var thisZip = document.getElementById('advanced-location').value; 
+    if (thisZip.length!=5) {
+        alert("Invalid ZIP code");
+        return;
+    } 
 
     // Submit new post request to home
     var form = document.getElementById('invisible-submittable');
@@ -110,9 +124,10 @@ function submitAdvanced() {
     var zipEl = document.createElement('input');
     zipEl.setAttribute('type','text');
     zipEl.setAttribute('name', 'zip');
-    zipEl.setAttribute('value', zip);
+    zipEl.setAttribute('value', document.getElementById('advanced-location').value);
+    zipEl.attributes.required = "required";
     form.appendChild(zipEl);
-
+    
     var radius = document.createElement('input');
     radius.setAttribute('type','text');
     radius.setAttribute('name','radius');
@@ -120,6 +135,18 @@ function submitAdvanced() {
     form.appendChild(radius);
 
     form.submit();
+}
+
+function fillYears() {
+    var minYear = document.getElementById("minYear");
+    var maxYear = document.getElementById("maxYear");
+    for (var i = 2021; i >= 1960; i--) {
+        var element = document.createElement("option");
+        element.textContent = i;
+        element.value = i;
+        maxYear.appendChild(element.cloneNode(true));
+        minYear.appendChild(element);
+    }
 }
 
 (function ($) {

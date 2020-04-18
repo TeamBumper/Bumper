@@ -57,6 +57,7 @@ def home_screen():
             model = request.form['model']
             zip_code = request.form['zip']
             radius = request.form['radius']
+            # price_range = request.form['minPrice'] + "-" + request.form['maxPrice']
             if model == 'AllModels':
                 model = ''
 

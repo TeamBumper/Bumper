@@ -256,7 +256,6 @@ button {
 	background-color: grey;
 	opacity: 0.7;
 	border-radius: 12px;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;

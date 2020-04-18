@@ -84,7 +84,7 @@ class API_checkUser(Resource):
             return 404
 
 
-class API_searchMarketCheck(Resource):
+class API_searchMarketCheck(Resource):    
     def get(self):
         print("doing search")
         args = parser.parse_args()
@@ -92,20 +92,33 @@ class API_searchMarketCheck(Resource):
         user_email = args['email']
         seenCars = self.getSeenCars(user_email)
         # Set relevant parameters/filters
-        system.setFilter('start', str(len(seenCars)))
+
         system.setFilter('rows', '10')
         for param in args:
             if args[param] is not None:
                 system.setFilter(param, args[param])
-        found_cars = system.search()
 
-        # Remove any vins already seen
-        if 'listings' in found_cars:
-            listings = found_cars['listings']
-            for i in range(len(listings)-1, -1, -1):
-                car_dict = listings[i]
-                if car_dict['vin'] in seenCars:
-                    del listings[i]
+        length = 0
+        index = 0
+        # Keep searching for cars, adjusting the index value if no cars left
+        while length == 0:
+            system.setFilter('start', str(index))
+            found_cars = system.search()
+            if 'code' in found_cars: # Break out of loop if error code returned
+                print("no cars found")
+                break
+            # Remove any vins already seen or if pictures/price don't exist
+            if 'listings' in found_cars:
+                listings = found_cars['listings']
+                for i in range(len(listings) - 1, -1, -1):
+                    car_dict = listings[i]
+                    if car_dict['vin'] in seenCars:
+                        del listings[i]
+                    elif 'media' not in car_dict or 'price' not in car_dict:
+                        del listings[i]
+                length = len(listings)
+            index += 10
+
         return json.dumps(found_cars)
 
     def getSeenCars(self, email):
@@ -155,7 +168,7 @@ class API_carPreferences(Resource):
             }
         else:
             key_value = {
-                args['vin']: args['value']+" " +
+                args['vin']: args['value']+" "+
                 urllib.parse.unquote(args['data'])
             }
         email = args['email']
