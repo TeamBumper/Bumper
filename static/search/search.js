@@ -31,7 +31,7 @@ function setCoordinates(x,y) {
 
 // Convert lat/long (x,y) to zip (stored in zip)
 function getZipForLocation(x,y) {
-    fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${x}&lng=${y}&username=bumperapp`)
+    fetch(`https://api.geonames.org/findNearbyPostalCodesJSON?lat=${x}&lng=${y}&username=bumperapp`)
         .then((response) => {
             return response.json();
         })
