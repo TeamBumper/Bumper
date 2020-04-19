@@ -1,15 +1,21 @@
+if(localStorage.getItem("email") == null || localStorage.getItem("access_token") == null){
+	if(localStorage.getItem("email") != null)
+		localStorage.removeItem("email");
+	else if(localStorage.getItem("access_token") != null)
+		localStorage.removeItem("access_token");
+	location.href = "/"
+}
+
 var container = document.getElementById('liked-cont');
 getLikes();
 
 function getLikes() {
-	console.log('doing the likes');
 	var email = localStorage.getItem('email');
 	endpoint = '/car_likes?email=' + email;
 	makeRec('GET', endpoint, handleLikes);
 }
 function handleLikes(response) {
 	var object = JSON.parse(response.responseText);
-	console.log(response.responseText);
 	var j_object = JSON.parse(object);
 	console.log(j_object);
 	for (var car in j_object) {
@@ -21,21 +27,52 @@ function fillLikes(object) {
 	var car = JSON.parse(object);
 	//console.log(car['vin']);
 	var new_like = document.createElement('div');
-	var car_info = document.createElement('div');
-	car_info.innerText =
-		car['build']['year'] + ' ' + car['build']['make'] + ' ' + car['build']['model'] + ' ' + car['build']['trim'];
-
-	car_info.classList.add('car_info');
+	new_like.classList.add('liked-car');
+	
+	var title=document.createElement('div');
+	title.classList.add('car-title');
+	title.innerText=car['build']['year'] + ' ' + car['build']['make'] + ' ' + car['build']['model'] + ' ' + car['build']['trim'];
+	var infoCont=document.createElement('div');
+	var miles=document.createElement('div');
+	miles.classList.add('car-miles'); 
+	if(car['miles']!=null){
+		miles.innerText=addCommas(car['miles']);
+	}
+	else{
+		miles.innerText='Contact Dealer for miles'
+	}
+	var price=document.createElement('div');
+	price.classList.add('car-price');
+	price.innerText=("$"+addCommas(car['price']));
+	infoCont.appendChild(title);
+	var otherCont=document.createElement('div')
+	otherCont.appendChild(miles);
+	otherCont.appendChild(price)
+	infoCont.appendChild(otherCont)
+	infoCont.classList.add('car-details')
 	var car_img = document.createElement('div');
 	var img = document.createElement('img');
 	img.src = car['media']['photo_links'][0];
-	car_img.classList.add('car_photo');
+	car_img.classList.add('car-image');
 	car_img.appendChild(img);
 	new_like.appendChild(car_img);
-	new_like.appendChild(car_info);
-
-	new_like.classList.add('liked_car_item');
+	new_like.appendChild(infoCont);
 	container.appendChild(new_like);
+	new_like.onclick = function() {
+		location.href = car['vdp_url'];	
+	};
+}
+
+function addCommas(nStr) {
+	nStr += '';
+	var x = nStr.split('.');
+	var x1 = x[0];
+	var x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
 }
 
 /* AJAX Boilerplate */

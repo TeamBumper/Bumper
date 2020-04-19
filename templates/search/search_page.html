@@ -63,6 +63,7 @@
                                                     <option>Chevrolet</option>
                                                     <option>Chrysler</option>
                                                     <option>Dodge</option>
+                                                    <option>Ferrari</option>
                                                     <option>FIAT</option>
                                                     <option>Ford</option>
                                                     <option>Genesis</option>
@@ -454,6 +455,17 @@
                                                     <option>Stealth</option>
                                                     <option>Stratus</option>
                                                     <option>Viper</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Ferrari" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-basic-Ferrari">
+                                                    <option selected="selected">All Models</option>            
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -1586,6 +1598,7 @@
                                                     <option>Chevrolet</option>
                                                     <option>Chrysler</option>
                                                     <option>Dodge</option>
+                                                    <option>Ferrari</option>
                                                     <option>FIAT</option>
                                                     <option>Ford</option>
                                                     <option>Genesis</option>
@@ -1977,6 +1990,17 @@
                                                     <option>Stealth</option>
                                                     <option>Stratus</option>
                                                     <option>Viper</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Ferrari-adv" style="display: none;">
+                                        <div class="input-group">
+                                            <label class="label">Model:</label>
+                                            <div class="rs-select2 js-select-simple select--no-search">
+                                                <select name="model" id="select-advanced-Ferrari">
+                                                    <option selected="selected">All Models</option>
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -3087,9 +3111,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-group">
-                                        <label class="label">Zip Code:</label>
-                                        <input class="input--style-1" type="text" name="location" placeholder="15213" id="advanced-location">
+                                </div>
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Zip Code:</label>
+                                            <input class="input--style-1" type="text" name="location" placeholder="15213" id="advanced-location">   
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Radius:</label>
+                                            <input class="input--style-1" type="text" name="radius" placeholder="10" id="radius" value="10">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row row-space">
@@ -3120,13 +3154,13 @@
                                     <div class="col-2">
                                         <div class="input-group">
                                             <label class="label">Min Price:</label>
-                                            <input class="input--style-1" type="text" name="minPrice" placeholder="100">
+                                            <input class="input--style-1" type="text" id="minPrice" name="minPrice" placeholder="100">
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group">
                                             <label class="label">Max Price:</label>
-                                            <input class="input--style-1" type="text" name="maxPrice" placeholder="2000">
+                                            <input class="input--style-1" type="text" id="maxPrice" name="maxPrice" placeholder="2000">
                                         </div>
                                     </div>
                                 </div>

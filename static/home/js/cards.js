@@ -23,9 +23,20 @@ $(document).ready(function() {
 		if (pullDeltaX >= decisionVal) {
 			$card.addClass('to-right');
 			value = 1;
+			var email = localStorage.getItem('email');
+			let data = JSON.stringify($card[0].data);
+			data = encodeURIComponent(data);
+
+			makeRec(
+				'PUT',
+				'/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email + '&data=' + data,
+				nothing
+			);
 		} else if (pullDeltaX <= -decisionVal) {
+			var email = localStorage.getItem('email');
 			$card.addClass('to-left');
 			value = -1;
+			makeRec('PUT', '/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email, nothing);
 		}
 
 		if (Math.abs(pullDeltaX) >= decisionVal) {
@@ -53,22 +64,6 @@ $(document).ready(function() {
 			pullDeltaX = 0;
 			animating = false;
 		}, 300);
-
-		var email = localStorage.getItem('email');
-		let data = JSON.stringify($card[0].data);
-		data = encodeURI(data);
-		data.replace(/&/g,'%26')
-
-		console.log(data);
-		if (value === -1) {
-			makeRec('PUT', '/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email, nothing);
-		} else {
-			makeRec(
-				'PUT',
-				'/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email + '&data=' + data,
-				nothing
-			);
-		}
 	}
 
 	$(document).on('mousedown touchstart', '.card:not(.inactive)', function(e) {

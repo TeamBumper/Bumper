@@ -1,5 +1,5 @@
 import os
-from api import API_addUser, API_checkUser, API_searchMarketCheck, API_carPreferences, API_carLikes
+from api import API_addUser, API_checkUser, API_searchMarketCheck, API_carPreferences, API_carLikes, API_devDelete
 from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack, send_from_directory
 from flask_pymongo import PyMongo
 from flask_restful import Api
@@ -20,6 +20,7 @@ api.add_resource(API_checkUser, '/checkuser')
 api.add_resource(API_searchMarketCheck, '/search')
 api.add_resource(API_carPreferences, '/car_preferences')
 api.add_resource(API_carLikes, '/car_likes')
+api.add_resource(API_devDelete, '/devdelete')
 
 
 # Routing
@@ -58,14 +59,25 @@ def home_screen():
     model = ""
     zip_code = ""
     radius = ""
-    if request.method == 'POST':
+    year = ""
+    price_range = ""
+    print("Before request stuff")
+    if request.method == 'POST':      
         if request.form['make'] != None:
             make = request.form['make']
             model = request.form['model']
+            print("After model")
             zip_code = request.form['zip']
+            print("After zip_code")
             radius = request.form['radius']
-            # price_range = request.form['minPrice'] + "-" + request.form['maxPrice']
-            if model == 'AllModels':
-                model = ''
+            print("After radius")
+            try:
+                year = request.form['year']
+                print("After year")
+                price_range = request.form['price_range']
+            except Exception as e: print(e)
 
-    return render_template('home/home.html', make=make, model=model, zip_code=zip_code, radius=radius)
+            if model == 'AllModels':
+                model = ''            
+    print("Got to here")
+    return render_template('home/home.html', make=make, model=model, zip_code=zip_code, radius=radius, year=year, price_range=price_range)

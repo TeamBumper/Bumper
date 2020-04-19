@@ -28,6 +28,7 @@ parser.add_argument('radius')
 parser.add_argument('latitude')
 parser.add_argument('longitude')
 parser.add_argument('vin')
+parser.add_argument('price_range')
 parser.add_argument('price_min')
 parser.add_argument('price_max')
 parser.add_argument('miles_min')
@@ -70,13 +71,8 @@ class API_addUser(Resource):
             'access_token': access_token,
         }
 
-        record2 = {
-            'email': email,
-        }
-
-        from main import users, car_preferences
+        from main import users
         users.remove(record)
-        car_preferences.remove(record2)
         return 200
 
 
@@ -165,7 +161,6 @@ class API_carLikes(Resource):
         from main import car_preferences
         filter = {"email": email}
         full_list = list(car_preferences.find(filter))[0]
-        print(full_list)
         del full_list['_id']
         del full_list['email']
         liked_list = list()
@@ -173,8 +168,7 @@ class API_carLikes(Resource):
             if full_list[car] == '-1':
                 del car
             else:
-                liked_list.append(full_list[car][2:])
-                print(full_list[car][2:])
+                liked_list.append(full_list[car][2:])                
         return json.dumps(liked_list)
 
 
@@ -206,3 +200,18 @@ class API_carPreferences(Resource):
 
         print("post done")
         return 200
+
+class API_devDelete(Resource):
+    def get(self):
+        args = parser.parse_args()
+        email = args['email']
+
+        record = {
+            'email': email,
+        }
+
+        from main import car_preferences
+        car_preferences.remove(record)
+        car_preferences.insert_one(record)
+        return 200
+

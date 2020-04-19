@@ -1,3 +1,11 @@
+if(localStorage.getItem("email") == null || localStorage.getItem("access_token") == null){
+	if(localStorage.getItem("email") != null)
+		localStorage.removeItem("email");
+	else if(localStorage.getItem("access_token") != null)
+		localStorage.removeItem("access_token");
+	location.href = "/"
+}
+
 let lat;
 let long;
 let zip;
@@ -87,7 +95,7 @@ function submitBasic() {
     var radius = document.createElement('input');
     radius.setAttribute('type','text');
     radius.setAttribute('name','radius');
-    radius.setAttribute('value', '10');
+    radius.setAttribute('value', 10);
     form.appendChild(radius);
 
     form.submit();
@@ -106,21 +114,50 @@ function submitAdvanced() {
         return;
     } 
 
+    var minYear = document.getElementById('minYear').value;
+    var maxYear = document.getElementById('maxYear').value;
+    if (minYear == 'All Years') minYear = 1981;
+    if (maxYear == 'All Years') maxYear = 2022;
+    var yearString = "";
+
+    if (minYear != "" && maxYear != "") { // min and max set
+        minYear = parseInt(minYear);
+        maxYear = parseInt(maxYear);
+    } else if (minYear == "" && maxYear != "") { // max set, min not set
+        minYear = 1981;
+        maxYear = parseInt(maxYear);
+    } else { // min set, max not set
+        minYear = parseInt(minYear);
+        maxYear = 2022;
+    }
+    for(i=minYear; i<=maxYear; i++) {
+        yearString += i;        
+        yearString += (i == maxYear) ?'' :',';
+    }    
+
+    var setRadius = document.getElementById('radius').value;
+    try {
+        setRadius = parseInt(setRadius);
+    } catch (e) {
+        setRadius = 10;
+    }
+    
     // Submit new post request to home
     var form = document.getElementById('invisible-submittable');
-
+    
+    
     var makeAttr = document.createElement('input');
     makeAttr.setAttribute('type', 'text');
     makeAttr.setAttribute('name', 'make');
     makeAttr.setAttribute('value', makeAdv);
     form.appendChild(makeAttr);
-
+    
     var modelAttr = document.createElement('input');
     modelAttr.setAttribute('type', 'text');
     modelAttr.setAttribute('name', 'model');
     modelAttr.setAttribute('value', model);
     form.appendChild(modelAttr);
-
+    
     var zipEl = document.createElement('input');
     zipEl.setAttribute('type','text');
     zipEl.setAttribute('name', 'zip');
@@ -133,6 +170,20 @@ function submitAdvanced() {
     radius.setAttribute('name','radius');
     radius.setAttribute('value', 10);
     form.appendChild(radius);
+    
+    var years = document.createElement('input');
+    years.setAttribute('type', 'text');
+    years.setAttribute('name', 'year');
+    years.setAttribute('value', yearString)
+    form.appendChild(years);
+    
+    var maxPrice = document.getElementById('maxPrice').value;
+    var minPrice = document.getElementById('minPrice').value;
+    var price = document.createElement('input');
+    price.setAttribute('type', 'text');
+    price.setAttribute('name', 'price_range');
+    price.setAttribute('value', minPrice + '-' + maxPrice);
+    form.appendChild(price);
 
     form.submit();
 }
@@ -140,7 +191,7 @@ function submitAdvanced() {
 function fillYears() {
     var minYear = document.getElementById("minYear");
     var maxYear = document.getElementById("maxYear");
-    for (var i = 2021; i >= 1960; i--) {
+    for (var i = 2022; i >= 1981; i--) {
         var element = document.createElement("option");
         element.textContent = i;
         element.value = i;

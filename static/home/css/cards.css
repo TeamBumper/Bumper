@@ -11,10 +11,19 @@ body {
 	font-size: 62.5%;
 }
 
-body {
-	/* background: #63BDF7; */
+body { 
 	overflow: hidden;
-}
+    animation: fadeInAnimation ease 4s;
+} 
+  
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
 
 button {
 	font-size: 50px !important;
@@ -263,6 +272,20 @@ button {
 
 .no-cards-found-smiley {
 	font-size: 180px;
+}
+
+.loader {
+	border: 16px solid #f3f3f3; /* Light grey */
+	border-top: 16px solid #6CB09B; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 }
 
 .no-cards-found-narrative {

@@ -1,3 +1,11 @@
+if(localStorage.getItem("email") == null || localStorage.getItem("access_token") == null){
+	if(localStorage.getItem("email") != null)
+		localStorage.removeItem("email");
+	else if(localStorage.getItem("access_token") != null)
+		localStorage.removeItem("access_token");
+	location.href = "/"
+}
+
 var card_cont;
 var allCars;
 var colors = [ 'purple', 'blue', 'indigo', 'cyan', 'lime', 'brown' ];
@@ -6,6 +14,8 @@ var search_params = js_passthrough['search_params'];
 var numOfCars;
 var no_cards_found = document.getElementById('no-cards-found');
 var no_more_cards = document.getElementById('no-more-cards');
+var loading = document.getElementById('loading');
+loading.style.display = "flex";
 
 getCars();
 
@@ -43,10 +53,15 @@ function handleCars(response) {
 	var j_object = JSON.parse(object);
 	card_cont = document.getElementById('card-cont');
 	allCars = j_object['listings'];
-	if(allCars.length == 0) {
-		no_cards_found.style.display = "flex";
+	if(!allCars || allCars === 'undefined' || allCars.length == 0) {
+		if (loading.style.display == "flex") {
+			loading.style.display = "none";
+			no_more_cards.style.display = "flex";
+		} else {
+			no_cards_found.style.display = "flex";
+		}
 	} else {
-		no_more_cards.style.display = "flex";
+		loading.style.display = "flex";
 		allCars.forEach((car) => {
 			buildCard(car);
 		});
@@ -109,7 +124,7 @@ function buildCard(car) {
 	if (car['miles']) {
 		miles.innerHTML = addCommas(car['miles']) + "<span style='font-size:35px'>miles</span>";
 	} else {
-		miles.innerHTML = 'Ask Alan';
+		miles.innerHTML = "N/A" + "<span style='font-size:35px'>miles</span>";
 	}
 	card_bot_header.appendChild(miles);
 
