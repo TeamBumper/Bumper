@@ -17,7 +17,7 @@ if 'DYNO' in os.environ:
             '\'unsafe-inline\'',
         ]
     }
-    Talisman(app)
+    Talisman(app, content_security_policy=csp)
 else:
     app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
 
