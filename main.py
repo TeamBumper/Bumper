@@ -13,8 +13,8 @@ if 'DYNO' in os.environ:
     app.debug = False
     csp = {
         'default-src': [
-            '\'self\'',
-            '\'unsafe-inline\'',
+            "'self'",
+            "'*'"
         ]
     }
     Talisman(app, content_security_policy=csp)
