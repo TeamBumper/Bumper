@@ -105,7 +105,10 @@ class API_searchMarketCheck(Resource):
         args = parser.parse_args()
         system = SearchSystem()
         user_email = args['email']
-        seenCars = self.getSeenCars(user_email)
+        try:
+            seenCars = self.getSeenCars(user_email)
+        except:
+            seenCars = ""
         # Set relevant parameters/filters
 
         system.setFilter('rows', '10')

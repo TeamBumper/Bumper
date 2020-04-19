@@ -1,7 +1,7 @@
 import requests
 import json
 
-api_key = "cGOl8azyoddqskryh5eXlvVo3KNfgZFC"
+api_key = "xKB022T5CaVfFrklXzRC8lHGBpYMkSU9"
 
 class SearchSystem():    
     
