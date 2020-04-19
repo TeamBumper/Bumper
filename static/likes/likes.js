@@ -36,7 +36,7 @@ function fillLikes(object) {
 	var miles=document.createElement('div');
 	miles.classList.add('car-miles'); 
 	if(car['miles']!=null){
-		miles.innerText=addCommas(car['miles']);
+		miles.innerText=addCommas(car['miles']) + " miles";
 	}
 	else{
 		miles.innerText='Contact Dealer for miles'
