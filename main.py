@@ -11,6 +11,12 @@ app = Flask(__name__)
 if 'DYNO' in os.environ:
     app.config["MONGO_URI"] = os.environ['MONGODB_URI'] + "?retryWrites=false"
     app.debug = False
+    csp = {
+        'default-src': [
+            '\'self\'',
+            '\'unsafe-inline\'',
+        ]
+    }
     Talisman(app)
 else:
     app.config["MONGO_URI"] = "mongodb://localhost:27017/bumper"
