@@ -35,33 +35,3 @@
     align-items: center;
     justify-content: center;
 }
-
-.login-option {
-    height: 25vw;
-    width: 25vw;
-    font-size: 15vw;
-    line-height: 25vw;
-    text-align: center;
-    border-radius: 20%;
-    margin: 0% 2.5% 0% 2.5%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.login-option:active {
-    border: 10px solid white;
-}
-
-.google-background {
-    background-color: #EA4335;
-    color: white;
-}
-
-.facebook-background {
-    background-color: #1977F2;
-    color: white;
-}
-
-.github-background {
-    background-color: #465667;
-    color: white;
-}

@@ -32,6 +32,13 @@ def favicon():
 def init():
     return render_template('welcome/welcome.html')
 
+@app.route('/welcome') 
+def welcome():
+    return render_template('welcome/welcome.html')
+
+@app.route('/logout') 
+def logout():
+    return render_template('logout/logout.html')
 
 @app.route('/search_page')
 def search_page():

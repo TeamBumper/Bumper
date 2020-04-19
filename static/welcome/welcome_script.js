@@ -54,6 +54,11 @@ function checkUser(){
     }
 }
 
+function googleSignIn() {
+    console.log("here");
+    document.getElementById('firebaseui-auth-container').click();
+}
+
 function handleCheckUser(response) {
     console.log(response);
     if(response.response.indexOf("200") !== -1) {

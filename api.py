@@ -60,6 +60,25 @@ class API_addUser(Resource):
         print("Here 2")
         return 200
 
+    def delete(self):
+        args = parser.parse_args()
+        email = args['email']
+        access_token = args['access_token']
+
+        record = {
+            'email': email,
+            'access_token': access_token,
+        }
+
+        record2 = {
+            'email': email,
+        }
+
+        from main import users, car_preferences
+        users.remove(record)
+        car_preferences.remove(record2)
+        return 200
+
 
 class API_checkUser(Resource):
     def get(self):
