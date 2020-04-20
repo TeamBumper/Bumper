@@ -21,6 +21,10 @@ if 'DYNO' in os.environ:
             # "https://www.gstatic.com",
             # "https://fonts.gstatic.com",
             "*"
+        ],
+        'style-src': [
+            "'self'",
+            "'unsafe-inline'"
         ]
     }
     Talisman(app, content_security_policy=csp)
