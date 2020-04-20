@@ -29,6 +29,7 @@ if 'DYNO' in os.environ:
         ],
         'script-src': [
             "'self'",
+            "*",
             "'unsafe-inline'"
         ]
     }
