@@ -206,7 +206,7 @@ function submitAdvanced() {
     var minPrice = document.getElementById('minPrice').value;
     var price = document.createElement('input');
     price.setAttribute('type', 'text');
-    price.setAttribute('name', 'price_range');
+    price.setAttribute('name', 'price');
     price.setAttribute('value', minPrice + '-' + maxPrice);
     form.appendChild(price);
 
