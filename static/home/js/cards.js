@@ -26,10 +26,16 @@ $(document).ready(function() {
 			var email = localStorage.getItem('email');
 			let data = JSON.stringify($card[0].data);
 			data = encodeURIComponent(data);
-
+			// vin, vdp_url, one picture, price, miles, title (year, make, model, trim)
+			var vin = $card[0].data.id;
+			var vdp = $card[0].data.vdp_url;
+			var pic_src = $card[0].data.media.photo_links[0];
+			var price = $card[0].data.price;
+			var miles = $card[0].data.miles;
+			var title = $card[0].data.build.year + " " + $card[0].data.build.make + " " + $card[0].data.build.model + " " + $card[0].data.build.trim;
 			makeRec(
 				'PUT',
-				'/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email + '&data=' + data,
+				'/car_preferences?vin=' + $card[0].id + '&value=' + value + '&email=' + email + '&vdp=' + vdp + '&pic_src=' + pic_src + '&price=' + price + '&miles=' + miles + '&title=' + title,
 				nothing
 			);
 		} else if (pullDeltaX <= -decisionVal) {

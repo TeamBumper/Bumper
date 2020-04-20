@@ -19,6 +19,11 @@ parser.add_argument('data')
 parser.add_argument('zip')
 parser.add_argument('lat')
 parser.add_argument('long')
+parser.add_argument('vdp')
+parser.add_argument('pic_src')
+parser.add_argument('price')
+parser.add_argument('miles')
+parser.add_argument('title')
 
 
 class API_addUser(Resource):
@@ -142,42 +147,58 @@ class API_carLikes(Resource):
         args = parser.parse_args()
         system = SearchSystem()
         email = args['email']
-        from main import car_preferences
+        from main import car_preferences, cars
         filter = {"email": email}
         full_list = list(car_preferences.find(filter))[0]
         del full_list['_id']
         del full_list['email']
-        liked_list = list()
+
+        vehicles = list()
         for car in full_list:
-            if full_list[car] == '-1':
-                del car
-            else:
-                liked_list.append(full_list[car][2:])                
-        return json.dumps(liked_list)
+            if full_list[car] == '1':
+                vehicle = cars.find_one({"vin":car})            
+                del vehicle['_id']
+                vehicles.append(vehicle)
+
+        return json.dumps(vehicles)          
+        
 
 
 class API_carPreferences(Resource):
     def put(self):
         args = parser.parse_args()
-        if args['value'] == '-1':
-            key_value = {
-                args['vin']: args['value']
-            }
-        else:
-            key_value = {
-                args['vin']: args['value']+" "+
-                urllib.parse.unquote(args['data'])
-            }
+
+        # Update user prefs
+        key_value = {
+            args['vin']: args['value']
+        }
         email = args['email']
         filter = {"email": email}
         newvalues = {"$set": key_value}
+        
         from main import car_preferences
-
-        # Get user information based on email
-        # user_info = car_preferences.find(filter)
-        # user_info_cars = user_info['car_table']
-        # user_info_cars.update(key_value)
         car_preferences.update_one(filter, newvalues)
+        
+        # Add liked car to cars collection
+        
+        from main import cars
+        if args['value'] == "1":
+            print("Liked car")
+            record = {
+                'vin' : args['vin']
+            }
+            exists = cars.find_one(record)
+            if exists is None: 
+                cars_entry = {
+                    'vin' : args['vin'],
+                    'vdp' : args['vdp'],
+                    'pic_src' : args['pic_src'],
+                    'price' : args['price'],
+                    'miles' : args['miles'],
+                    'title' : args['title']
+                }    
+                cars.insert_one(cars_entry)
+                print("Creating car entry")
 
         # print(user_info)
         # print(user_info_cars)

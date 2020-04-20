@@ -40,6 +40,7 @@ else:
 mongo = PyMongo(app)
 users = mongo.db.users
 car_preferences = mongo.db.car_preferences
+cars = mongo.db.cars
 
 
 api = Api(app)

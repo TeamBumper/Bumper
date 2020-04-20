@@ -23,19 +23,17 @@ function handleLikes(response) {
 	}
 }
 
-function fillLikes(object) {
-	var car = JSON.parse(object);
-	//console.log(car['vin']);
+function fillLikes(car) {
 	var new_like = document.createElement('div');
 	new_like.classList.add('liked-car');
 	
 	var title=document.createElement('div');
 	title.classList.add('car-title');
-	title.innerText=car['build']['year'] + ' ' + car['build']['make'] + ' ' + car['build']['model'] + ' ' + car['build']['trim'];
+	title.innerText=car['title'];
 	var infoCont=document.createElement('div');
 	var miles=document.createElement('div');
 	miles.classList.add('car-miles'); 
-	if(car['miles']!=null){
+	if(car['miles']!="undefined"){
 		miles.innerText=addCommas(car['miles']) + " miles";
 	}
 	else{
@@ -52,14 +50,14 @@ function fillLikes(object) {
 	infoCont.classList.add('car-details')
 	var car_img = document.createElement('div');
 	var img = document.createElement('img');
-	img.src = car['media']['photo_links'][0];
+	img.src = car['pic_src'];
 	car_img.classList.add('car-image');
 	car_img.appendChild(img);
 	new_like.appendChild(car_img);
 	new_like.appendChild(infoCont);
 	container.appendChild(new_like);
 	new_like.onclick = function() {
-		location.href = car['vdp_url'];	
+		location.href = car['vdp'];	
 	};
 }
 
