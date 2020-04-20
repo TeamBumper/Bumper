@@ -16,6 +16,9 @@ if 'DYNO' in os.environ:
             "'self'",
             "https://cdn.firebase.com",
             "https://stackpath.bootstrapcdn.com",
+            "https://fonts.googleapis.com",
+            "https://kit.fontawesome.com",
+            "https://www.gstatic.com",
             "'*'"
         ]
     }
