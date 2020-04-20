@@ -14,6 +14,8 @@ if 'DYNO' in os.environ:
     csp = {
         'default-src': [
             "'self'",
+            "https://cdn.firebase.com",
+            "https://stackpath.bootstrapcdn.com",
             "'*'"
         ]
     }
