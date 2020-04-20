@@ -160,9 +160,8 @@ class API_carLikes(Resource):
                 del vehicle['_id']
                 vehicles.append(vehicle)
 
-        return json.dumps(vehicles)          
+        return json.dumps(vehicles)
         
-
 
 class API_carPreferences(Resource):
     def put(self):
@@ -205,6 +204,15 @@ class API_carPreferences(Resource):
 
         print("post done")
         return 200
+        
+    def delete(self):
+        args = parser.parse_args()        
+        filter = {"email": args['email']}
+        remove = {"$unset": {args['vin']:"1"}}
+        from main import car_preferences        
+        car_preferences.update_one(filter, remove)
+        return 200
+
 
 class API_devDelete(Resource):
     def get(self):

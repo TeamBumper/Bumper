@@ -21,11 +21,30 @@ function handleLikes(response) {
 	for (var car in j_object) {
 		fillLikes(j_object[car]);
 	}
+
+	Swiped.init({
+		query: '.liked-cont li',
+		list: true,
+		right: 500,
+		tolerance: 400,
+		onOpen: function() {
+			this.destroy(true)
+			console.log(this);
+			var vin = this.elem.id;
+			var email = localStorage.getItem('email');
+			makeRec('DELETE', '/car_preferences?email=' + email + "&vin=" + vin, handleDelete);
+		}
+	});
+}
+
+function handleDelete(response) {
+	console.log(response);
 }
 
 function fillLikes(car) {
-	var new_like = document.createElement('div');
+	var new_like = document.createElement('li');
 	new_like.classList.add('liked-car');
+	new_like.id = car.vin;
 	
 	var title=document.createElement('div');
 	title.classList.add('car-title');
@@ -84,7 +103,6 @@ function makeRec(method, target, handlerAction, data) {
 
 	httpRequest.onreadystatechange = function() {
 		if (httpRequest.readyState === XMLHttpRequest.DONE) {
-			console.log('DONEDONEDONE');
 			handlerAction(httpRequest);
 		}
 	};
