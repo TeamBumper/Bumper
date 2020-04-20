@@ -14,12 +14,13 @@ if 'DYNO' in os.environ:
     csp = {
         'default-src': [
             "'self'",
-            "https://cdn.firebase.com",
-            "https://stackpath.bootstrapcdn.com",
-            "https://fonts.googleapis.com",
-            "https://kit.fontawesome.com",
-            "https://www.gstatic.com",
-            "'*'"
+            # "https://cdn.firebase.com",
+            # "https://stackpath.bootstrapcdn.com",
+            # "https://fonts.googleapis.com",
+            # "https://kit.fontawesome.com",
+            # "https://www.gstatic.com",
+            # "https://fonts.gstatic.com",
+            "*"
         ]
     }
     Talisman(app, content_security_policy=csp)
