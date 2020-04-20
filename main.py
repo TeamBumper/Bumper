@@ -91,7 +91,7 @@ def home_screen():
     zip_code = ""
     radius = ""
     year = ""
-    price_range = ""
+    price = ""
     print("Before request stuff")
     if request.method == 'POST':      
         if request.form['make'] != None:
@@ -105,10 +105,10 @@ def home_screen():
             try:
                 year = request.form['year']
                 print("After year")
-                price_range = request.form['price_range']
+                price = request.form['price']
             except Exception as e: print(e)
 
             if model == 'AllModels':
                 model = ''            
     print("Got to here")
-    return render_template('home/home.html', make=make, model=model, zip_code=zip_code, radius=radius, year=year, price_range=price_range)
+    return render_template('home/home.html', make=make, model=model, zip_code=zip_code, radius=radius, year=year, price=price)
