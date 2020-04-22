@@ -54,6 +54,13 @@ function checkUser(){
     }
 }
 
+function openGoogleLogin() {
+    var parent = document.getElementById('firebaseui-auth-container');
+    console.log("we are here");
+    parent.childNodes[0].children[0].childNodes[0].children[0].childNodes[0].childNodes[0].click();
+}
+
+
 function googleSignIn() {
     console.log("here");
     document.getElementById('firebaseui-auth-container').click();
